@@ -4,12 +4,82 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="" />
+    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="Add initial implementation of model classes and Gradle configuration">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Movement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/OrderDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/ProductDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/ProductSupplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Request.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Stock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Supplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Movement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/OrderDetall.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/ProductDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/ProductSupplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Request.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Stock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.kotlin/sessions/kotlin-compiler-14466326465258345730.salive" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="controlbox" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTTP Request" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MauriUvic&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MauriUvic/controlbox.git&quot;,
+    &quot;accountId&quot;: &quot;1480b7f7-cece-4aa3-9f4d-6b03d735847c&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -21,19 +91,35 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/10059541/source/repos/controlbox&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/10059541/source/repos/controlbox/repository&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\10059541\source\repos\controlbox\repository" />
+      <recent name="C:\Users\10059541\source\repos\controlbox\model\src" />
+      <recent name="C:\Users\10059541\source\repos\controlbox\model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\10059541\source\repos\controlbox" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cat.uvic.teknos.dam.controlbox" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -53,10 +139,32 @@
       <workItem from="1744034957214" duration="51000" />
       <workItem from="1744035053511" duration="1196000" />
       <workItem from="1744036261701" duration="23000" />
+      <workItem from="1744038099072" duration="929000" />
+      <workItem from="1744290756401" duration="6516000" />
+      <workItem from="1744300316089" duration="629000" />
+      <workItem from="1745500459212" duration="1618000" />
+      <workItem from="1745502405988" duration="7151000" />
+      <workItem from="1746450897962" duration="2597000" />
+      <workItem from="1746710149907" duration="312000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add initial implementation of model classes and Gradle configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add initial implementation of model classes and Gradle configuration" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Request.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
