@@ -1,15 +1,15 @@
-package cat.uvic.teknos.dam.controlbox.impl;
+package cat.uvic.teknos.dam.controlbox.repositories.model.impl;
 
 
-import cat.uvic.teknos.dam.controlbox.Stock;
-import cat.uvic.teknos.dam.controlbox.Movement;
-import cat.uvic.teknos.dam.controlbox.OrderDetail;
-import cat.uvic.teknos.dam.controlbox.Request;
-import cat.uvic.teknos.dam.controlbox.Supplier;
-import cat.uvic.teknos.dam.controlbox.ProductDetail;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Stock;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Movement;
+import cat.uvic.teknos.dam.controlbox.repositories.model.OrderDetail;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Request;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Supplier;
+import cat.uvic.teknos.dam.controlbox.repositories.model.ProductDetail;
 import java.util.Set;
 
-public class Product implements cat.uvic.teknos.dam.controlbox.Product {
+public class Product implements cat.uvic.teknos.dam.controlbox.repositories.model.Product {
     private String barcode;
     private Long id;
     private String name;

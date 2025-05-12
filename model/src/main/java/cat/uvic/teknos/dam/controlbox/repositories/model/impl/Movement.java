@@ -1,8 +1,8 @@
-package cat.uvic.teknos.dam.controlbox.impl;
+package cat.uvic.teknos.dam.controlbox.repositories.model.impl;
 
-import cat.uvic.teknos.dam.controlbox.Product;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Product;
 
-public class Movement implements cat.uvic.teknos.dam.controlbox.Movement {
+public class Movement implements cat.uvic.teknos.dam.controlbox.repositories.model.Movement {
 
     private Long id;
     private String type;

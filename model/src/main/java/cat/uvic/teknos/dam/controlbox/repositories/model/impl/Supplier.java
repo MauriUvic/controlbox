@@ -1,11 +1,11 @@
-package cat.uvic.teknos.dam.controlbox.impl;
+package cat.uvic.teknos.dam.controlbox.repositories.model.impl;
 
-import cat.uvic.teknos.dam.controlbox.Order;
-import cat.uvic.teknos.dam.controlbox.Product;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Order;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Product;
 
 import java.util.Set;
 
-public class Supplier implements cat.uvic.teknos.dam.controlbox.Supplier {
+public class Supplier implements cat.uvic.teknos.dam.controlbox.repositories.model.Supplier {
     private Long id;
     private String companyName;
     private String contactName;

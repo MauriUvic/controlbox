@@ -5,28 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="Add initial implementation of model classes and Gradle configuration">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Movement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/OrderDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/ProductDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/ProductSupplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Stock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Supplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Movement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/OrderDetall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/ProductDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/ProductSupplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Stock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Supplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repositories/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/.kotlin/sessions/kotlin-compiler-14466326465258345730.salive" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Movement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/OrderDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/OrderDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/ProductDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/ProductDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/ProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/ProductSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Movement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/OrderDetall.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/OrderDetall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/ProductDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/ProductDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/ProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/ProductSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Supplier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,21 +92,22 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/10059541/source/repos/controlbox/repository&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/10059541/source/repos/controlbox/repositories&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\10059541\source\repos\controlbox\repositories" />
       <recent name="C:\Users\10059541\source\repos\controlbox\repository" />
       <recent name="C:\Users\10059541\source\repos\controlbox\model\src" />
       <recent name="C:\Users\10059541\source\repos\controlbox\model" />
@@ -119,6 +118,19 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cat.uvic.teknos.dam.controlbox" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="controlbox.model" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="controlbox.model" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -145,8 +157,18 @@
       <workItem from="1745500459212" duration="1618000" />
       <workItem from="1745502405988" duration="7151000" />
       <workItem from="1746450897962" duration="2597000" />
-      <workItem from="1746710149907" duration="312000" />
+      <workItem from="1746710149907" duration="6261000" />
+      <workItem from="1747054393986" duration="431000" />
     </task>
+    <task id="LOCAL-00001" summary="Add initial implementation of model classes and Gradle configuration">
+      <option name="closed" value="true" />
+      <created>1746710484245</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746710484245</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +182,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/impl/Request.java</url>
+          <url>file://$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Request.java</url>
           <line>63</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>

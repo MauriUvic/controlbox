@@ -1,4 +1,4 @@
-package cat.uvic.teknos.dam.controlbox;
+package cat.uvic.teknos.dam.controlbox.repositories.model;
 
 public interface OrderDetail {
 

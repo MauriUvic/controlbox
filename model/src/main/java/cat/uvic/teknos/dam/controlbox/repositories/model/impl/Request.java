@@ -1,6 +1,6 @@
-package cat.uvic.teknos.dam.controlbox.impl;
+package cat.uvic.teknos.dam.controlbox.repositories.model.impl;
 
-public class Request implements cat.uvic.teknos.dam.controlbox.Request {
+public class Request implements cat.uvic.teknos.dam.controlbox.repositories.model.Request {
     private Long id;
     private Long productId;
     private Integer requestedQuantity;

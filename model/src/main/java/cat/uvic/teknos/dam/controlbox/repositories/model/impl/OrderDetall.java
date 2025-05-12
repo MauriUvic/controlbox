@@ -1,9 +1,9 @@
-package cat.uvic.teknos.dam.controlbox.impl;
+package cat.uvic.teknos.dam.controlbox.repositories.model.impl;
 
-import cat.uvic.teknos.dam.controlbox.Order;
-import cat.uvic.teknos.dam.controlbox.Product;
-import cat.uvic.teknos.dam.controlbox.Stock;
-import cat.uvic.teknos.dam.controlbox.OrderDetail;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Order;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Product;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Stock;
+import cat.uvic.teknos.dam.controlbox.repositories.model.OrderDetail;
 
 public class OrderDetall implements OrderDetail {
 

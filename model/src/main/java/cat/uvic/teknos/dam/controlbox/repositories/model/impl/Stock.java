@@ -1,11 +1,11 @@
-package cat.uvic.teknos.dam.controlbox.impl;
+package cat.uvic.teknos.dam.controlbox.repositories.model.impl;
 
-import cat.uvic.teknos.dam.controlbox.OrderDetail;
-import cat.uvic.teknos.dam.controlbox.Product;
+import cat.uvic.teknos.dam.controlbox.repositories.model.OrderDetail;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Product;
 
 import java.util.Set;
 
-public class Stock implements cat.uvic.teknos.dam.controlbox.Stock {
+public class Stock implements cat.uvic.teknos.dam.controlbox.repositories.model.Stock {
     private Long id;
     private Integer quantity;
     private String location;

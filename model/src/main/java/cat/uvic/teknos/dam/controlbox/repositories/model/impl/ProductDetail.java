@@ -1,8 +1,8 @@
-package cat.uvic.teknos.dam.controlbox.impl;
+package cat.uvic.teknos.dam.controlbox.repositories.model.impl;
 
-import cat.uvic.teknos.dam.controlbox.Product;
+import cat.uvic.teknos.dam.controlbox.repositories.model.Product;
 
-public class ProductDetail implements cat.uvic.teknos.dam.controlbox.ProductDetail {
+public class ProductDetail implements cat.uvic.teknos.dam.controlbox.repositories.model.ProductDetail {
     private Product product;
     private String manufacturer;
     private Integer warrantyMonths;
