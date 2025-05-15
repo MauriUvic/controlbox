@@ -9,6 +9,7 @@ plugins {
 dependencies {
     implementation("org.apache.commons:commons-text")
     implementation(project(":utilities"))
+    implementation("com.mysql:mysql-connector-j:9.3.0")
 }
 
 application {

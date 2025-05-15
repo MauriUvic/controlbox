@@ -7,7 +7,10 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":repositories"));
     implementation(project(":model"));
+
+
 }
 
 
