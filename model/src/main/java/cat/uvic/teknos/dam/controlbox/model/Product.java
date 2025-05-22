@@ -42,4 +42,7 @@ public interface Product {
 
     ProductDetail getDetail();
     void setDetail(ProductDetail productDetail);
+
+    ProductSupplier getProductSupplier();
+    void setProductSupplier(ProductSupplier productSupplier);
 }

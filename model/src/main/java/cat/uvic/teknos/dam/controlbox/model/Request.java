@@ -5,8 +5,8 @@ public interface Request {
     Long getId();
     void setId(Long requestId);
 
-    Long getProductId();
-    void setProductId(Long productId);
+    Long getProduct();
+    void setProduct(Long productId);
 
     Integer getedQuantity();
     void setedQuantity(Integer requestedQuantity);

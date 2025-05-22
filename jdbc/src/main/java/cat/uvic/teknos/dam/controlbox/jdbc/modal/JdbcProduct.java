@@ -1,16 +1,9 @@
-package cat.uvic.teknos.dam.controlbox.model.impl;
+package cat.uvic.teknos.dam.controlbox.jdbc.modal;
 
-import cat.uvic.teknos.dam.controlbox.model.ProductSupplier;
-import cat.uvic.teknos.dam.controlbox.model.Stock;
-import cat.uvic.teknos.dam.controlbox.model.Movement;
-import cat.uvic.teknos.dam.controlbox.model.OrderDetail;
-import cat.uvic.teknos.dam.controlbox.model.Request;
-import cat.uvic.teknos.dam.controlbox.model.Supplier;
-import cat.uvic.teknos.dam.controlbox.model.ProductDetail;
-
+import cat.uvic.teknos.dam.controlbox.model.*;
 import java.util.Set;
 
-public class Product implements cat.uvic.teknos.dam.controlbox.model.Product {
+public class JdbcProduct implements Product {
     private String barcode;
     private Long id;
     private String name;
@@ -24,6 +17,7 @@ public class Product implements cat.uvic.teknos.dam.controlbox.model.Product {
     private Set<Request> request;
     private Set<Supplier> supplier;
     private ProductDetail detail;
+    private ProductSupplier productSupplier;
 
     @Override
     public String getBarcode() {
@@ -157,11 +151,11 @@ public class Product implements cat.uvic.teknos.dam.controlbox.model.Product {
 
     @Override
     public ProductSupplier getProductSupplier() {
-        return (ProductSupplier) supplier;
+        return productSupplier;
     }
 
     @Override
     public void setProductSupplier(ProductSupplier productSupplier) {
-
+        this.productSupplier = productSupplier;
     }
 }

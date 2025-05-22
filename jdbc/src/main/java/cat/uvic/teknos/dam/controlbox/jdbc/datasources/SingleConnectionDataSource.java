@@ -1,6 +1,5 @@
 package cat.uvic.teknos.dam.controlbox.jdbc.datasources;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,7 +45,7 @@ public class SingleConnectionDataSource implements DataSource {
     public SingleConnectionDataSource() {
         var properties = new Properties();
         try {
-            properties.load(this.getClass().getResourceAsStream("datasource.properties"));
+            properties.load(this.getClass().getResourceAsStream("/datasource.properties"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -55,21 +54,20 @@ public class SingleConnectionDataSource implements DataSource {
         database = properties.getProperty("database");
         user = properties.getProperty("user");
         password = properties.getProperty("password");
-
     }
 
     @Override
     public Connection getConnection() {
         if (connection == null) {
-                try {
-                    connection = DriverManager.getConnection(
-                    String.format("jdbc:%s://%s", driver, server, database),
-                    user,
-                    password
-                    );
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+            try {
+                connection = DriverManager.getConnection(
+                        String.format("jdbc:%s://%s", driver, server, database),
+                        user,
+                        password
+                );
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
 
         }

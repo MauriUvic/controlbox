@@ -3,9 +3,8 @@ package cat.uvic.teknos.dam.controlbox.model.impl;
 import cat.uvic.teknos.dam.controlbox.model.Order;
 import cat.uvic.teknos.dam.controlbox.model.Product;
 import cat.uvic.teknos.dam.controlbox.model.Stock;
-import cat.uvic.teknos.dam.controlbox.model.OrderDetail;
 
-public class OrderDetall implements OrderDetail {
+public class OrderDetail implements cat.uvic.teknos.dam.controlbox.model.OrderDetail {
 
     private Long id;
     private Integer quantity;

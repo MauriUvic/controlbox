@@ -9,8 +9,6 @@ class SingleConnectionDataSourceTest {
     @Test
     void getDriver() {
         var dataSource = new SingleConnectionDataSource();
-
-        //driver = mysql
         assertEquals("mysql", dataSource.getDriver());
     }
 

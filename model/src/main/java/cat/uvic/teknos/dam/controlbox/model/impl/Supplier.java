@@ -2,6 +2,7 @@ package cat.uvic.teknos.dam.controlbox.model.impl;
 
 import cat.uvic.teknos.dam.controlbox.model.Order;
 import cat.uvic.teknos.dam.controlbox.model.Product;
+import cat.uvic.teknos.dam.controlbox.model.ProductSupplier;
 
 import java.util.Set;
 
@@ -93,5 +94,15 @@ public class Supplier implements cat.uvic.teknos.dam.controlbox.model.Supplier {
     @Override
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public Set<ProductSupplier> getProductSuppliers() {
+        return Set.of();
+    }
+
+    @Override
+    public void setProductSuppliers(Set<ProductSupplier> productSuppliers) {
+
     }
 }

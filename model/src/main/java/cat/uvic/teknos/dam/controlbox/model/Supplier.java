@@ -27,4 +27,7 @@ public interface Supplier {
 
     Set<Product> getProducts();
     void setProducts(Set<Product> products);
+
+    Set<ProductSupplier> getProductSuppliers();
+    void setProductSuppliers(Set<ProductSupplier> productSuppliers);
 }

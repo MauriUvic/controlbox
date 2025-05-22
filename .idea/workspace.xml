@@ -5,51 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="Add initial implementation of model classes and Gradle configuration">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/example/app/JdbcApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/example/app/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/example/app/PersonRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jdbc/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcMovementRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/DataSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jdbc/src/main/resources/datasources.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSourceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jdbc/src/test/resources/datasource.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderDetailRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcMovement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcOrderDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcProduct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/example/app/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/example/app/MessageUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/org/example/app/MessageUtilsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/org/example/app/MessageUtilsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Movement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/OrderDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/OrderDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/ProductDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ProductDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/ProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ProductSupplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Movement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/OrderDetall.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/OrderDetall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/ProductDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ProductDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/ProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ProductSupplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/model/impl/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/MovementRepostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/MovementRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/OrderDetailRepostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/OrderDetailRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/OrderRepostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/OrderRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductDetailRepostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductDetailRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductRepostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductSupplierRepostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductSupplierRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RequestRepostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RequestRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/StockRepostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/StockRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/SupplierRepostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/SupplierRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/repostories.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcMovementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcMovementRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/DataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/resources/datasources.properties" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/resources/datasource.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSourceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/test/resources/datasource.properties" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/resources/datasource.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/OrderDetall.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/OrderDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/MovementRepostory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/MovementRepostory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/OrderDetailRepostory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/OrderRepostory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/OrderRepostory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductDetailRepostory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductRepostory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductRepostory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductSupplierRepostory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductSupplierRepostory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RequestRepostory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RequestRepostory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/StockRepostory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/StockRepostory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/SupplierRepostory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/SupplierRepostory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,9 +67,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTTP Request" />
-        <option value="Class" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -114,8 +99,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build controlbox.executor": "Run",
-    "Gradle.SingleConnectionDataSourceTest.getConnection.executor": "Debug",
-    "Gradle.SingleConnectionDataSourceTest.getDriver.executor": "Debug",
+    "Gradle.SingleConnectionDataSourceTest.getConnection.executor": "Run",
+    "Gradle.SingleConnectionDataSourceTest.getDriver.executor": "Run",
+    "Gradle.SingleConnectionDataSourceTest.getServer.executor": "Run",
     "Gradle.controlbox:app [:app:org.example.app.JdbcApp.main()].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -154,11 +140,13 @@
       <recent name="cat.uvic.teknos.dam.controlbox.jdbc.datasources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cat.uvic.teknos.dam.controlbox.jdbc" />
+      <recent name="cat.uvic.teknos.dam.controlbox.jdbc.modal" />
       <recent name="cat.uvic.teknos.dam.controlbox.repositories" />
       <recent name="cat.uvic.teknos.dam.controlbox" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.SingleConnectionDataSourceTest.getConnection">
+  <component name="RunManager" selected="Gradle.SingleConnectionDataSourceTest.getDriver">
     <configuration name="SingleConnectionDataSourceTest.getConnection" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -207,6 +195,30 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="SingleConnectionDataSourceTest.getServer" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":jdbc:test" />
+            <option value="--tests" />
+            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.datasources.SingleConnectionDataSourceTest.getServer&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="controlbox.model" />
       <method v="2">
@@ -220,8 +232,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.SingleConnectionDataSourceTest.getConnection" />
         <item itemvalue="Gradle.SingleConnectionDataSourceTest.getDriver" />
+        <item itemvalue="Gradle.SingleConnectionDataSourceTest.getServer" />
+        <item itemvalue="Gradle.SingleConnectionDataSourceTest.getConnection" />
       </list>
     </recent_temporary>
   </component>
@@ -253,7 +266,9 @@
       <workItem from="1746710149907" duration="6261000" />
       <workItem from="1747054393986" duration="5565000" />
       <workItem from="1747063002321" duration="2392000" />
-      <workItem from="1747314929918" duration="8976000" />
+      <workItem from="1747314929918" duration="9835000" />
+      <workItem from="1747661003270" duration="5567000" />
+      <workItem from="1747919593282" duration="6683000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial implementation of model classes and Gradle configuration">
       <option name="closed" value="true" />
@@ -271,7 +286,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747055526048</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add initial implementation of model classes and Gradle configuration">
+      <option name="closed" value="true" />
+      <created>1747324790080</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747324790080</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,16 +303,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add initial implementation of model classes and Gradle configuration" />
     <option name="LAST_COMMIT_MESSAGE" value="Add initial implementation of model classes and Gradle configuration" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Request.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

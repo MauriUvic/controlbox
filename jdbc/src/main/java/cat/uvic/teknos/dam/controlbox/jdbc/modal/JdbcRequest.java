@@ -1,21 +1,18 @@
-package cat.uvic.teknos.dam.controlbox.model.impl;
+package cat.uvic.teknos.dam.controlbox.jdbc.modal;
 
-public class Request implements cat.uvic.teknos.dam.controlbox.model.Request {
-    private Long id;
-    private Long productId;
-    private Integer requestedQuantity;
-    private String date;
-    private String status;
-    private String requester;
+import cat.uvic.teknos.dam.controlbox.model.*;
 
+import java.util.Set;
+
+public class JdbcRequest implements Request{
     @Override
     public Long getId() {
-        return id;
+        return 0L;
     }
 
     @Override
     public void setId(Long requestId) {
-        this.id = requestId;
+
     }
 
     @Override
@@ -30,41 +27,41 @@ public class Request implements cat.uvic.teknos.dam.controlbox.model.Request {
 
     @Override
     public Integer getedQuantity() {
-        return requestedQuantity;
+        return 0;
     }
 
     @Override
     public void setedQuantity(Integer requestedQuantity) {
-        this.requestedQuantity = requestedQuantity;
+
     }
 
     @Override
     public String getDate() {
-        return date;
+        return "";
     }
 
     @Override
     public void setDate(String requestDate) {
-        this.date = requestDate;
+
     }
 
     @Override
     public String getStatus() {
-        return status;
+        return "";
     }
 
     @Override
     public void setStatus(String requestStatus) {
-        this.status = requestStatus;
+
     }
 
     @Override
     public String geter() {
-        return requester;
+        return "";
     }
 
     @Override
     public void seter(String requester) {
-        this.requester = requester;
+
     }
 }

@@ -1,37 +1,36 @@
 package cat.uvic.teknos.dam.controlbox.jdbc;
 
 import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
-import cat.uvic.teknos.dam.controlbox.jdbc.modal.JdbcMovement;
-import cat.uvic.teknos.dam.controlbox.model.Movement;
-import cat.uvic.teknos.dam.controlbox.repositories.MovementRepostory;
+import cat.uvic.teknos.dam.controlbox.jdbc.modal.JdbcOrderDetail;
+import cat.uvic.teknos.dam.controlbox.model.OrderDetail;
+
 
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class JdbcMovementRepository implements MovementRepostory {
+public class JdbcOrderDetailRepository implements OrderRepository {
     private final DataSource dataSource;
 
-    public JdbcMovementRepository(DataSource dataSource) {
+    public JdbcOrderDetailRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     @Override
-    public Movement getMovementById(Integer id) {
+    public OrderDetail getOrderDetailById(Integer id) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
-                "SELECT * FROM MOVEMENT WHERE ID = ?")) {
+                "SELECT * FROM ORDER_DETAIL WHERE ID = ?")) {
             preparedStatement.setInt(1, id);
             var resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                var movement = new JdbcMovement();
-                movement.setId(resultSet.getLong("ID"));
-                movement.setType(resultSet.getString("TYPE"));
-                movement.setQuantity(resultSet.getInt("QUANTITY"));
-                movement.setDate(resultSet.getString("DATE"));
-                movement.setReference(resultSet.getString("REFERENCE"));
-                return movement;
+                var orderDetail = new JdbcOrderDetail();
+                orderDetail.setId(resultSet.getLong("ID"));
+                orderDetail.setQuantity(resultSet.getInt("QUANTITY"));
+                orderDetail.setUnitPrice(resultSet.getDouble("UNIT_PRICE"));
+                orderDetail.setSubtotal(resultSet.getDouble("SUBTOTAL"));
+                return orderDetail;
             }
             return null;
         } catch (SQLException e) {
@@ -43,12 +42,11 @@ public class JdbcMovementRepository implements MovementRepostory {
     public void save(Integer value) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
-                "INSERT INTO MOVEMENT (TYPE, QUANTITY, DATE, REFERENCE) VALUES (?, ?, ?, ?)")) {
-            Movement movement = getMovementById(value);
-            preparedStatement.setString(1, movement.getType());
-            preparedStatement.setInt(2, movement.getQuantity());
-            preparedStatement.setString(3, movement.getDate());
-            preparedStatement.setString(4, movement.getReference());
+                "INSERT INTO ORDER_DETAIL (QUANTITY, UNIT_PRICE, SUBTOTAL) VALUES (?, ?, ?)")) {
+            OrderDetail orderDetail = getOrderDetailById(value);
+            preparedStatement.setInt(1, orderDetail.getQuantity());
+            preparedStatement.setDouble(2, orderDetail.getUnitPrice());
+            preparedStatement.setDouble(3, orderDetail.getSubtotal());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -59,7 +57,7 @@ public class JdbcMovementRepository implements MovementRepostory {
     public void delete(Integer value) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
-                "DELETE FROM MOVEMENT WHERE ID = ?")) {
+                "DELETE FROM ORDER_DETAIL WHERE ID = ?")) {
             preparedStatement.setInt(1, value);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -68,7 +66,7 @@ public class JdbcMovementRepository implements MovementRepostory {
     }
 
     @Override
-    public Integer get(Movement id) {
+    public Integer get(OrderDetail id) {
         return Math.toIntExact(id.getId());
     }
 
@@ -76,12 +74,12 @@ public class JdbcMovementRepository implements MovementRepostory {
     public Set<Integer> getAll() {
         var connection = dataSource.getConnection();
         try (var statement = connection.createStatement()) {
-            var resultSet = statement.executeQuery("SELECT ID FROM MOVEMENT");
-            Set<Integer> movements = new HashSet<>();
+            var resultSet = statement.executeQuery("SELECT ID FROM ORDER_DETAIL");
+            Set<Integer> orderDetails = new HashSet<>();
             while (resultSet.next()) {
-                movements.add(resultSet.getInt("ID"));
+                orderDetails.add(resultSet.getInt("ID"));
             }
-            return movements;
+            return orderDetails;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
