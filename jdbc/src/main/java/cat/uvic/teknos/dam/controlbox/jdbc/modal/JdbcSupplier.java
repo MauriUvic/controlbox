@@ -1,0 +1,111 @@
+package cat.uvic.teknos.dam.controlbox.jdbc.modal;
+
+import cat.uvic.teknos.dam.controlbox.model.Order;
+import cat.uvic.teknos.dam.controlbox.model.Product;
+import cat.uvic.teknos.dam.controlbox.model.ProductSupplier;
+import cat.uvic.teknos.dam.controlbox.model.Supplier;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class JdbcSupplier implements Supplier {
+    private Long id;
+    private String companyName;
+    private String contactName;
+    private String email;
+    private String phone;
+    private String address;
+    private Set<Order> orders = new HashSet<>();
+    private Set<Product> products = new HashSet<>();
+    private Set<ProductSupplier> productSuppliers = new HashSet<>();
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long supplierId) {
+        this.id = supplierId;
+    }
+
+    @Override
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    @Override
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    @Override
+    public String getContactName() {
+        return contactName;
+    }
+
+    @Override
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String getPhone() {
+        return phone;
+    }
+
+    @Override
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public void setAddress(String supplierAddress) {
+        this.address = supplierAddress;
+    }
+
+    @Override
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    @Override
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    @Override
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    @Override
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    @Override
+    public Set<ProductSupplier> getProductSuppliers() {
+        return productSuppliers;
+    }
+
+    @Override
+    public void setProductSuppliers(Set<ProductSupplier> productSuppliers) {
+        this.productSuppliers = productSuppliers;
+    }
+}

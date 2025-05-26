@@ -42,7 +42,7 @@ public class JdbcProductRepository implements ProductRepostory {
     }
 
     @Override
-    public void save(Integer value) {
+    public void save(Product value) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
                 "INSERT INTO PRODUCT (NAME, DESCRIPTION, UNIT_PRICE, CATEGORY, BARCODE, CREATED_AT) VALUES (?, ?, ?, ?, ?, ?)")) {

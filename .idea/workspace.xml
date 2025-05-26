@@ -5,16 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="Refactor data source and repository classes; rename properties file and update database configurations">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/example/app/controlbox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/exceptions/CrudException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/exceptions/DataSourceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/cat/uvic/teknos/dam/controlbox/main/ProductManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcSupplierRepostory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcSupplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/JdbcMovementRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/JdbcProductRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/JdbcRequestRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/JdbcSupplierRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jpa/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jpa/src/main/java/cat/uvic/teknos/dam/controlbox/jpa/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jpa/src/main/resources/datasource.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jpa/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSourceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jpa/src/test/resources/datasource.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ModelFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ModelFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RepositoryFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/example/app/JdbcApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/example/app/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/example/app/PersonRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/cat/uvic/teknos/dam/controlbox/main/controlbox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcMovementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcMovementRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderDetailRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,9 +62,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTTP Request" />
-        <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Exception" />
+        <option value="Interface" />
+        <option value="XML Properties File" />
         <option value="Class" />
       </list>
     </option>
@@ -77,39 +93,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build controlbox.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SingleConnectionDataSourceTest.getConnection.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SingleConnectionDataSourceTest.getDriver.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SingleConnectionDataSourceTest.getServer.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox:app [:app:org.example.app.JdbcApp.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/10059541/source/repos/controlbox/jdbc/src&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build controlbox.executor": "Run",
+    "Gradle.SingleConnectionDataSourceTest.getConnection.executor": "Run",
+    "Gradle.SingleConnectionDataSourceTest.getDriver.executor": "Run",
+    "Gradle.SingleConnectionDataSourceTest.getServer.executor": "Run",
+    "Gradle.controlbox:app [:app:org.example.app.JdbcApp.main()].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/10059541/source/repos/controlbox/jpa/src/main/java",
+    "last_opened_file_path": "C:/Users/10059541/source/repos/controlbox/jpa",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\10059541\source\repos\controlbox\jpa" />
       <recent name="C:\Users\10059541\source\repos\controlbox\jdbc\src" />
       <recent name="C:\Users\10059541\source\repos\controlbox\jdbc" />
       <recent name="C:\Users\10059541\source\repos\controlbox\app\src\main\java\org\example\app" />
       <recent name="C:\Users\10059541\source\repos\controlbox\repositories" />
-      <recent name="C:\Users\10059541\source\repos\controlbox\repository" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\10059541\source\repos\controlbox" />
@@ -250,7 +267,7 @@
       <workItem from="1747314929918" duration="9835000" />
       <workItem from="1747661003270" duration="5567000" />
       <workItem from="1747919593282" duration="8256000" />
-      <workItem from="1748262044136" duration="858000" />
+      <workItem from="1748262044136" duration="7517000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial implementation of model classes and Gradle configuration">
       <option name="closed" value="true" />
@@ -284,7 +301,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747929229210</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactor data source and repository classes; rename properties file and update database configurations">
+      <option name="closed" value="true" />
+      <created>1748263282029</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1748263282029</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

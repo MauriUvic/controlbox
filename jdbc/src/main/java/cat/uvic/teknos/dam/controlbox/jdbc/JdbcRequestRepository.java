@@ -2,6 +2,7 @@ package cat.uvic.teknos.dam.controlbox.jdbc;
 
 import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
 import cat.uvic.teknos.dam.controlbox.jdbc.modal.JdbcRequest;
+import cat.uvic.teknos.dam.controlbox.model.Product;
 import cat.uvic.teknos.dam.controlbox.model.impl.Request;
 import cat.uvic.teknos.dam.controlbox.repositories.RequestRepostory;
 
@@ -49,7 +50,7 @@ public class JdbcRequestRepository implements RequestRepostory {
     }
 
     @Override
-    public void save(Integer value) {
+    public void save(Product value) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
                 "INSERT INTO REQUEST (PRODUCT_ID, REQUESTED_QUANTITY, REQUEST_DATE, STATUS, REQUESTER) VALUES (?, ?, ?, ?, ?)")) {
