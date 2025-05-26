@@ -1,5 +1,7 @@
 package cat.uvic.teknos.dam.controlbox.jdbc.datasources;
 
+import cat.uvic.teknos.dam.controlbox.jdbc.exceptions.DataSourceException;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -47,7 +49,7 @@ public class SingleConnectionDataSource implements DataSource {
         try {
             properties.load(this.getClass().getResourceAsStream("/datasource.properties"));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new DataSourceException("Failed to load datasource properties", e);
         }
         driver = properties.getProperty("driver");
         server = properties.getProperty("server");
@@ -66,10 +68,8 @@ public class SingleConnectionDataSource implements DataSource {
                         password
                 );
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new DataSourceException("Failed to establish database connection", e);
             }
-
-
         }
         return connection;
     }

@@ -25,13 +25,21 @@ public class JdbcRequestRepository implements RequestRepostory {
             var resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                var request = new JdbcRequest();
-                request.setId(resultSet.getLong("ID"));
-                request.setProduct(resultSet.getLong("PRODUCT_ID"));
-                request.setedQuantity(resultSet.getInt("REQUESTED_QUANTITY"));
-                request.setDate(resultSet.getString("REQUEST_DATE"));
-                request.setStatus(resultSet.getString("STATUS"));
-                request.seter(resultSet.getString("REQUESTER"));
+                var jdbcRequest = new JdbcRequest();
+                jdbcRequest.setId(resultSet.getLong("ID"));
+                jdbcRequest.setProduct(resultSet.getLong("PRODUCT_ID"));
+                jdbcRequest.setedQuantity(resultSet.getInt("REQUESTED_QUANTITY"));
+                jdbcRequest.setDate(resultSet.getString("REQUEST_DATE"));
+                jdbcRequest.setStatus(resultSet.getString("STATUS"));
+                jdbcRequest.seter(resultSet.getString("REQUESTER"));
+
+                var request = new Request();
+                request.setId(jdbcRequest.getId());
+                request.setProduct(jdbcRequest.getProduct());
+                request.setRequestedQuantity(jdbcRequest.getedQuantity());
+                request.setRequestDate(jdbcRequest.getDate());
+                request.setStatus(jdbcRequest.getStatus());
+                request.setRequester(jdbcRequest.geter());
                 return request;
             }
             return null;
@@ -45,12 +53,12 @@ public class JdbcRequestRepository implements RequestRepostory {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
                 "INSERT INTO REQUEST (PRODUCT_ID, REQUESTED_QUANTITY, REQUEST_DATE, STATUS, REQUESTER) VALUES (?, ?, ?, ?, ?)")) {
-            JdbcRequest request = getRequestById(value);
+            Request request = getRequestById(value);
             preparedStatement.setLong(1, request.getProduct());
-            preparedStatement.setInt(2, request.getedQuantity());
-            preparedStatement.setString(3, request.getDate());
+            preparedStatement.setInt(2, request.getRequestedQuantity());
+            preparedStatement.setString(3, request.getRequestDate());
             preparedStatement.setString(4, request.getStatus());
-            preparedStatement.setString(5, request.geter());
+            preparedStatement.setString(5, request.getRequester());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
