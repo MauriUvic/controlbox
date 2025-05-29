@@ -14,3 +14,11 @@ dependencies {
 }
 
 
+
+tasks.named("jar") {
+    dependsOn("classes")
+}
+
+tasks.named("classes") {
+    dependsOn("compileJava")
+}

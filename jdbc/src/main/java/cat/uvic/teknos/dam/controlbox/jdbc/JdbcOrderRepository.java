@@ -41,7 +41,7 @@ public class JdbcOrderRepository implements OrderRepostory {
     }
 
     @Override
-    public void save(Product value) {
+    public void save(int value) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
                 "INSERT INTO ORDER_TABLE (DATE, TOTAL_AMOUNT, STATUS, DELIVERY_DATE) VALUES (?, ?, ?, ?)")) {
@@ -69,7 +69,7 @@ public class JdbcOrderRepository implements OrderRepostory {
     }
 
     @Override
-    public Integer get(cat.uvic.teknos.dam.controlbox.model.impl.Order id) {
+    public Integer get(Integer id) {
         return 0;
     }
 
@@ -92,7 +92,7 @@ public class JdbcOrderRepository implements OrderRepostory {
 
 
     @Override
-    public cat.uvic.teknos.dam.controlbox.model.impl.Order getOrderById(int id) {
+    public cat.uvic.teknos.dam.controlbox.model.impl.Order getOrderById(Product id) {
         return null;
     }
 }

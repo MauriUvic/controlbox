@@ -1,13 +1,13 @@
 package cat.uvic.teknos.dam.controlbox.jdbc;
 
+import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
+
 import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
 import cat.uvic.teknos.dam.controlbox.jdbc.modal.JdbcProduct;
 import cat.uvic.teknos.dam.controlbox.model.Product;
 import cat.uvic.teknos.dam.controlbox.repositories.ProductRepostory;
-
-import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
 
 public class JdbcProductRepository implements ProductRepostory {
     private final DataSource dataSource;
@@ -42,11 +42,11 @@ public class JdbcProductRepository implements ProductRepostory {
     }
 
     @Override
-    public void save(Product value) {
+    public void save(int value) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
                 "INSERT INTO PRODUCT (NAME, DESCRIPTION, UNIT_PRICE, CATEGORY, BARCODE, CREATED_AT) VALUES (?, ?, ?, ?, ?, ?)")) {
-            Product product = getProductByName(value.toString());
+            Product product = getProductByName(String.valueOf(value));
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
             preparedStatement.setDouble(3, product.getUnitPrice());
@@ -72,7 +72,7 @@ public class JdbcProductRepository implements ProductRepostory {
     }
 
     @Override
-    public Integer get(cat.uvic.teknos.dam.controlbox.model.impl.Product id) {
+    public Integer get(Integer id) {
         return 0;
     }
 

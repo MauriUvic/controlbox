@@ -41,11 +41,11 @@ public class JdbcSupplierRepostory implements SupplierRepostory {
     }
 
     @Override
-    public void save(Product value) {
+    public void save(int value) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
                 "INSERT INTO SUPPLIER (COMPANY_NAME, CONTACT_NAME, EMAIL, PHONE, ADDRESS) VALUES (?, ?, ?, ?, ?)")) {
-            Supplier supplier = getSupplierById(value);
+            Supplier supplier = (Supplier) getSupplierById(value);
             preparedStatement.setString(1, supplier.getCompanyName());
             preparedStatement.setString(2, supplier.getContactName());
             preparedStatement.setString(3, supplier.getEmail());
@@ -69,6 +69,11 @@ public class JdbcSupplierRepostory implements SupplierRepostory {
         }
     }
 
+    @Override
+    public Integer get(Integer id) {
+        return 0;
+    }
+
 
     @Override
     public Set<Integer> getAll() {
@@ -86,7 +91,7 @@ public class JdbcSupplierRepostory implements SupplierRepostory {
     }
 
     @Override
-    public SupplierRepostory getSupplierById(int id) {
+    public SupplierRepostory getSupplierById(Product id) {
         return null;
     }
 

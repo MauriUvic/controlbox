@@ -3,7 +3,6 @@ package cat.uvic.teknos.dam.controlbox.jdbc;
 import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
 import cat.uvic.teknos.dam.controlbox.jdbc.modal.JdbcMovement;
 import cat.uvic.teknos.dam.controlbox.model.Movement;
-import cat.uvic.teknos.dam.controlbox.model.Product;
 import cat.uvic.teknos.dam.controlbox.repositories.MovementRepostory;
 
 import java.sql.SQLException;
@@ -41,7 +40,7 @@ public class JdbcMovementRepository implements MovementRepostory {
     }
 
     @Override
-    public void save(Product value) {
+    public void save(int value) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
                 "INSERT INTO MOVEMENT (TYPE, QUANTITY, DATE, REFERENCE) VALUES (?, ?, ?, ?)")) {
@@ -69,8 +68,8 @@ public class JdbcMovementRepository implements MovementRepostory {
     }
 
     @Override
-    public Integer get(Movement id) {
-        return Math.toIntExact(id.getId());
+    public Integer get(Integer id) {
+        return Math.toIntExact(id); 
     }
 
     @Override

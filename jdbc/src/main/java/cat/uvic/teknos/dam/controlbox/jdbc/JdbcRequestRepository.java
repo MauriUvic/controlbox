@@ -1,14 +1,13 @@
 package cat.uvic.teknos.dam.controlbox.jdbc;
 
-import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
-import cat.uvic.teknos.dam.controlbox.jdbc.modal.JdbcRequest;
-import cat.uvic.teknos.dam.controlbox.model.Product;
-import cat.uvic.teknos.dam.controlbox.model.impl.Request;
-import cat.uvic.teknos.dam.controlbox.repositories.RequestRepostory;
-
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
+
+import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
+import cat.uvic.teknos.dam.controlbox.jdbc.modal.JdbcRequest;
+import cat.uvic.teknos.dam.controlbox.model.impl.Request;
+import cat.uvic.teknos.dam.controlbox.repositories.RequestRepostory;
 
 public class JdbcRequestRepository implements RequestRepostory {
     private final DataSource dataSource;
@@ -50,7 +49,7 @@ public class JdbcRequestRepository implements RequestRepostory {
     }
 
     @Override
-    public void save(Product value) {
+    public void save(int value) {
         var connection = dataSource.getConnection();
         try (var preparedStatement = connection.prepareStatement(
                 "INSERT INTO REQUEST (PRODUCT_ID, REQUESTED_QUANTITY, REQUEST_DATE, STATUS, REQUESTER) VALUES (?, ?, ?, ?, ?)")) {
@@ -79,8 +78,8 @@ public class JdbcRequestRepository implements RequestRepostory {
     }
 
     @Override
-    public Integer get(Request id) {
-        return Math.toIntExact(id.getId());
+    public Integer get(Integer id) {
+        return id;
     }
 
     @Override

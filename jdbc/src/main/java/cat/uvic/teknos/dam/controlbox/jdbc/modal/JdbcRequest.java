@@ -1,8 +1,6 @@
 package cat.uvic.teknos.dam.controlbox.jdbc.modal;
 
-import cat.uvic.teknos.dam.controlbox.model.*;
-
-import java.util.Set;
+import cat.uvic.teknos.dam.controlbox.model.Request;
 
 public class JdbcRequest implements Request{
     @Override
@@ -63,5 +61,9 @@ public class JdbcRequest implements Request{
     @Override
     public void seter(String requester) {
 
+    }
+
+    public Integer getRequestedQuantity() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
