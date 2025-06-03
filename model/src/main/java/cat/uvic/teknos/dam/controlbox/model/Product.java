@@ -4,9 +4,6 @@ import java.util.Set;
 
 public interface Product {
 
-    String getBarcode();
-    void setBarcode(String barcode);
-
     Long getId();
     void setId(Long productId);
 
@@ -19,14 +16,11 @@ public interface Product {
     Double getUnitPrice();
     void setUnitPrice(Double unitPrice);
 
-    String getCategory();
-    void setCategory(String category);
 
-    String getCreatedAt();
-    void setCreatedAt(String createdAt);
 
-    Set<Stock> getStock();
-    void setStock(Set<Stock> stock);
+
+    Integer getStock();
+    void setStock(Integer stock);
 
     Set<OrderDetail> getOrderDetail();
     void setOrderDetail(Set<OrderDetail> orderDetail);

@@ -2,7 +2,6 @@ package cat.uvic.teknos.dam.controlbox.model.impl;
 
 import cat.uvic.teknos.dam.controlbox.model.Order;
 import cat.uvic.teknos.dam.controlbox.model.Product;
-import cat.uvic.teknos.dam.controlbox.model.Stock;
 
 public class OrderDetail implements cat.uvic.teknos.dam.controlbox.model.OrderDetail {
 
@@ -12,7 +11,7 @@ public class OrderDetail implements cat.uvic.teknos.dam.controlbox.model.OrderDe
     private Double subtotal;
     private Order order;
     private Product product;
-    private Stock stock;
+
 
     @Override
     public Long getId() {
@@ -74,13 +73,4 @@ public class OrderDetail implements cat.uvic.teknos.dam.controlbox.model.OrderDe
         this.product = product;
     }
 
-    @Override
-    public Stock getStock() {
-        return stock;
-    }
-
-    @Override
-    public void setStock(Stock stock) {
-        this.stock = stock;
-    }
 }

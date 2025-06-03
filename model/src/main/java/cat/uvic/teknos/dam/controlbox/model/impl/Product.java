@@ -1,7 +1,6 @@
 package cat.uvic.teknos.dam.controlbox.model.impl;
 
 import cat.uvic.teknos.dam.controlbox.model.ProductSupplier;
-import cat.uvic.teknos.dam.controlbox.model.Stock;
 import cat.uvic.teknos.dam.controlbox.model.Movement;
 import cat.uvic.teknos.dam.controlbox.model.OrderDetail;
 import cat.uvic.teknos.dam.controlbox.model.Request;
@@ -16,24 +15,14 @@ public class Product implements cat.uvic.teknos.dam.controlbox.model.Product {
     private String name;
     private String description;
     private Double unitPrice;
-    private String category;
-    private String createdAt;
-    private Set<Stock> stock;
+    private int stock;
     private Set<OrderDetail> orderDetail;
     private Set<Movement> movement;
     private Set<Request> request;
     private Set<Supplier> supplier;
     private ProductDetail detail;
 
-    @Override
-    public String getBarcode() {
-        return barcode;
-    }
 
-    @Override
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
 
     @Override
     public Long getId() {
@@ -75,33 +64,13 @@ public class Product implements cat.uvic.teknos.dam.controlbox.model.Product {
         this.unitPrice = unitPrice;
     }
 
-    @Override
-    public String getCategory() {
-        return category;
-    }
 
     @Override
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    @Override
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    @Override
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    @Override
-    public Set<Stock> getStock() {
+    public Integer getStock() {
         return stock;
     }
-
     @Override
-    public void setStock(Set<Stock> stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 

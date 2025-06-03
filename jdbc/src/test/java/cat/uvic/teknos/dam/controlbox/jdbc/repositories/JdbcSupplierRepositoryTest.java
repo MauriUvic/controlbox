@@ -1,7 +1,8 @@
-package cat.uvic.teknos.dam.controlbox.jdbc.datasources;
+package cat.uvic.teknos.dam.controlbox.jdbc.repositories;
 
 import cat.uvic.teknos.dam.controlbox.jdbc.JdbcSupplierRepostory;
-import cat.uvic.teknos.dam.controlbox.jdbc.modal.JdbcSupplier;
+import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
+import cat.uvic.teknos.dam.controlbox.jdbc.model.JdbcSupplier;
 import cat.uvic.teknos.dam.controlbox.model.Supplier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -85,7 +86,7 @@ class JdbcSupplierRepositoryTest {
 
 
 
-        Set<Integer> suppliers = repository.getAll();
+        Set<Supplier> suppliers = repository.getAll();
 
 
         assertEquals(2, suppliers.size());

@@ -20,6 +20,5 @@ public interface OrderDetail {
     Product getProduct();
     void setProduct(Product product);
 
-    Stock getStock();
-    void setStock(Stock stock);
+
 }

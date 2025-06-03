@@ -8,8 +8,8 @@ public interface Request {
     Long getProduct();
     void setProduct(Long productId);
 
-    Integer getedQuantity();
-    void setedQuantity(Integer requestedQuantity);
+    Integer getQuantity();
+    void setQuantity(Integer requestedQuantity);
 
     String getDate();
     void setDate(String requestDate);
@@ -17,6 +17,8 @@ public interface Request {
     String getStatus();
     void setStatus(String requestStatus);
 
-    String geter();
-    void seter(String requester);
+    String getRequester();
+    void setRequester(String requester);
+
+
 }

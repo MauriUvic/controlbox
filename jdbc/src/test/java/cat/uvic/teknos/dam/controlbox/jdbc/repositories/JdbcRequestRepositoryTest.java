@@ -1,6 +1,7 @@
-package cat.uvic.teknos.dam.controlbox.jdbc.datasources;
+package cat.uvic.teknos.dam.controlbox.jdbc.repositories;
 
-import cat.uvic.teknos.dam.controlbox.model.impl.Request;
+import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
+import cat.uvic.teknos.dam.controlbox.model.Request;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import cat.uvic.teknos.dam.controlbox.jdbc.JdbcRequestRepository;
@@ -47,21 +48,21 @@ class JdbcRequestRepositoryTest {
     @Test
     void testSaveAndGetRequest() {
         // Arrange
-        Request request = new Request();
+        Request request = new cat.uvic.teknos.dam.controlbox.model.impl.Request();
         request.setProduct(1L);
-        request.setRequestedQuantity(5);
-        request.setRequestDate(LocalDate.now().toString());
+        request.setQuantity(5);
+        request.setDate(LocalDate.now().toString());
         request.setStatus("PENDING");
         request.setRequester("John Doe");
 
         // Act
-        repository.save(1);
-        Request retrieved = repository.getRequestById(1);
+        repository.save(request);
+        var retrieved = repository.getRequestById(1);
 
         // Assert
         assertNotNull(retrieved);
         assertEquals(request.getProduct(), retrieved.getProduct());
-        assertEquals(request.getRequestedQuantity(), retrieved.getRequestedQuantity());
+        assertEquals(request.getQuantity(), retrieved.getQuantity());
         assertEquals(request.getStatus(), retrieved.getStatus());
         assertEquals(request.getRequester(), retrieved.getRequester());
     }
@@ -69,11 +70,11 @@ class JdbcRequestRepositoryTest {
     @Test
     void testDeleteRequest() {
         // Arrange
-        repository.save(1);
+        //repository.save(1);
 
         // Act
         repository.delete(1);
-        Request retrieved = repository.getRequestById(1);
+        var retrieved = repository.getRequestById(1);
 
         // Assert
         assertNull(retrieved);
@@ -82,11 +83,11 @@ class JdbcRequestRepositoryTest {
     @Test
     void testGetAll() {
         // Arrange
-        repository.save(1);
-        repository.save(2);
+        //repository.save(1);
+        //repository.save(2);
 
         // Act
-        Set<Integer> requests = repository.getAll();
+        Set<Request> requests = repository.getAll();
 
         // Assert
         assertEquals(2, requests.size());
@@ -94,3 +95,4 @@ class JdbcRequestRepositoryTest {
         assertTrue(requests.contains(2));
     }
 }
+

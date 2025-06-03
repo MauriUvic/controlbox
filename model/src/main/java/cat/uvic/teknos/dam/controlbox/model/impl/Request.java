@@ -29,12 +29,12 @@ public class Request implements cat.uvic.teknos.dam.controlbox.model.Request {
     }
 
     @Override
-    public Integer getedQuantity() {
+    public Integer getQuantity() {
         return requestedQuantity;
     }
 
     @Override
-    public void setedQuantity(Integer requestedQuantity) {
+    public void setQuantity(Integer requestedQuantity) {
         this.requestedQuantity = requestedQuantity;
     }
 
@@ -59,12 +59,12 @@ public class Request implements cat.uvic.teknos.dam.controlbox.model.Request {
     }
 
     @Override
-    public String geter() {
+    public String getRequester() {
         return requester;
     }
 
     @Override
-    public void seter(String requester) {
+    public void setRequester(String requester) {
         this.requester = requester;
     }
 
@@ -80,15 +80,11 @@ public class Request implements cat.uvic.teknos.dam.controlbox.model.Request {
         this.date = date;
     }
 
-    public void setRequester(String geter) {
-        this.requester = geter;
-    }
+
 
     public String getRequestDate() {
         return date != null ? date : "";
     }
 
-    public String getRequester() {
-        return requester != null ? requester : "";
-    }
+
 }

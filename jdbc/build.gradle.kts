@@ -7,13 +7,13 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":repositories"));
-    implementation(project(":model"));
+    implementation(project(":repositories"))
+    implementation(project(":model"))
+    testImplementation("com.h2database:h2:2.2.224")
+    implementation("com.mysql:mysql-connector-j:9.3.0")
 
-
+    testImplementation("org.mybatis:mybatis:3.5.19")
 }
-
-
 
 tasks.named("jar") {
     dependsOn("classes")

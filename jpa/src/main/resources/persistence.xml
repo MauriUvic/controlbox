@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="controlbox" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaProduct</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaProductDetail</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaStock</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaSupplier</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaOrders</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaOrderDetail</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaMovement</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaRequest</class>
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/CONTROLBOX?useSSL=false&amp;serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="rootpassword"/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="controlbox_test" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaProduct</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaProductDetail</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaStock</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaSupplier</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaOrders</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaOrderDetail</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaMovement</class>
+        <class>cat.uvic.teknos.dam.controlbox.modal.jpa.JpaRequest</class>
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/CONTROLBOX_TEST?useSSL=false&amp;serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="rootpassword"/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

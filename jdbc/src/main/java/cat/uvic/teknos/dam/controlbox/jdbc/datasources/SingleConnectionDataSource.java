@@ -63,7 +63,7 @@ public class SingleConnectionDataSource implements DataSource {
         if (connection == null) {
             try {
                 connection = DriverManager.getConnection(
-                        String.format("jdbc:%s://%s", driver, server, database),
+                        String.format("jdbc:%s://%s/%s", driver, server, database),
                         user,
                         password
                 );

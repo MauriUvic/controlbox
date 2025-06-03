@@ -7,7 +7,6 @@ import cat.uvic.teknos.dam.controlbox.model.Product;
 import cat.uvic.teknos.dam.controlbox.model.ProductDetail;
 import cat.uvic.teknos.dam.controlbox.model.ProductSupplier;
 import cat.uvic.teknos.dam.controlbox.model.Request;
-import cat.uvic.teknos.dam.controlbox.model.Stock;
 import cat.uvic.teknos.dam.controlbox.model.Supplier;
 
 public class ModelFactory implements cat.uvic.teknos.dam.controlbox.model.ModelFactory {
@@ -18,11 +17,6 @@ public class ModelFactory implements cat.uvic.teknos.dam.controlbox.model.ModelF
 
     @Override
     public Request newRequest() {
-        return null;
-    }
-
-    @Override
-    public Stock newStock() {
         return null;
     }
 
