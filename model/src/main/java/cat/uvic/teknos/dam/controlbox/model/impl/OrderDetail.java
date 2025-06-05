@@ -6,9 +6,8 @@ import cat.uvic.teknos.dam.controlbox.model.Product;
 public class OrderDetail implements cat.uvic.teknos.dam.controlbox.model.OrderDetail {
 
     private Long id;
-    private Integer quantity;
+    private Double quantity;
     private Double unitPrice;
-    private Double subtotal;
     private Order order;
     private Product product;
 
@@ -24,12 +23,12 @@ public class OrderDetail implements cat.uvic.teknos.dam.controlbox.model.OrderDe
     }
 
     @Override
-    public Integer getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
     @Override
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 
@@ -41,16 +40,6 @@ public class OrderDetail implements cat.uvic.teknos.dam.controlbox.model.OrderDe
     @Override
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
-    }
-
-    @Override
-    public Double getSubtotal() {
-        return subtotal;
-    }
-
-    @Override
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
     }
 
     @Override

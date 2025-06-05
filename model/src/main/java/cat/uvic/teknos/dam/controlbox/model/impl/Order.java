@@ -75,13 +75,4 @@ public class Order implements cat.uvic.teknos.dam.controlbox.model.Order {
         this.supplier = supplier;
     }
 
-    @Override
-    public Set<OrderDetail> getDetails() {
-        return details;
-    }
-
-    @Override
-    public void setDetails(Set<OrderDetail> orderDetails) {
-        this.details = orderDetails;
-    }
 }

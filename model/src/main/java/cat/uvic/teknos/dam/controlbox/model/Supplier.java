@@ -1,14 +1,11 @@
 package cat.uvic.teknos.dam.controlbox.model;
 
-import java.util.Set;
-
 public interface Supplier {
-
     Long getId();
     void setId(Long supplierId);
 
-    String getCompanyName();
-    void setCompanyName(String companyName);
+    String getName();
+    void setName(String supplierName);
 
     String getContactName();
     void setContactName(String contactName);
@@ -20,14 +17,6 @@ public interface Supplier {
     void setPhone(String phone);
 
     String getAddress();
-    void setAddress(String supplierAddress);
+    void setAddress(String address);
 
-    Set<Order> getOrders();
-    void setOrders(Set<Order> orders);
-
-    Set<Product> getProducts();
-    void setProducts(Set<Product> products);
-
-    Set<ProductSupplier> getProductSuppliers();
-    void setProductSuppliers(Set<ProductSupplier> productSuppliers);
 }

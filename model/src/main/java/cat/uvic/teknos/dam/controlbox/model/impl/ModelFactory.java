@@ -4,7 +4,6 @@ import cat.uvic.teknos.dam.controlbox.model.Movement;
 import cat.uvic.teknos.dam.controlbox.model.Order;
 import cat.uvic.teknos.dam.controlbox.model.OrderDetail;
 import cat.uvic.teknos.dam.controlbox.model.Product;
-import cat.uvic.teknos.dam.controlbox.model.ProductDetail;
 import cat.uvic.teknos.dam.controlbox.model.ProductSupplier;
 import cat.uvic.teknos.dam.controlbox.model.Request;
 import cat.uvic.teknos.dam.controlbox.model.Supplier;
@@ -40,10 +39,6 @@ public class ModelFactory implements cat.uvic.teknos.dam.controlbox.model.ModelF
         return null;
     }
 
-    @Override
-    public ProductDetail newProductDetail() {
-        return null;
-    }
 
     @Override
     public OrderDetail newOrderDetail() {

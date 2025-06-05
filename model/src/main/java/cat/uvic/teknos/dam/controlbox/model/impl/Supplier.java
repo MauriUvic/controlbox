@@ -13,8 +13,6 @@ public class Supplier implements cat.uvic.teknos.dam.controlbox.model.Supplier {
     private String email;
     private String phone;
     private String address;
-    private Set<Order> orders;
-    private Set<Product> products;
 
     @Override
     public Long getId() {
@@ -27,12 +25,12 @@ public class Supplier implements cat.uvic.teknos.dam.controlbox.model.Supplier {
     }
 
     @Override
-    public String getCompanyName() {
+    public String getName() {
         return companyName;
     }
 
     @Override
-    public void setCompanyName(String companyName) {
+    public void setName(String companyName) {
         this.companyName = companyName;
     }
 
@@ -76,33 +74,5 @@ public class Supplier implements cat.uvic.teknos.dam.controlbox.model.Supplier {
         this.address = supplierAddress;
     }
 
-    @Override
-    public Set<Order> getOrders() {
-        return orders;
-    }
 
-    @Override
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
-    @Override
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    @Override
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
-    @Override
-    public Set<ProductSupplier> getProductSuppliers() {
-        return Set.of();
-    }
-
-    @Override
-    public void setProductSuppliers(Set<ProductSupplier> productSuppliers) {
-
-    }
 }

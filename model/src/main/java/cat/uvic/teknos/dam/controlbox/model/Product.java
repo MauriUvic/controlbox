@@ -16,27 +16,10 @@ public interface Product {
     Double getUnitPrice();
     void setUnitPrice(Double unitPrice);
 
+    Double getStock();
+    void setStock(Double stock);
 
 
 
-    Integer getStock();
-    void setStock(Integer stock);
 
-    Set<OrderDetail> getOrderDetail();
-    void setOrderDetail(Set<OrderDetail> orderDetail);
-
-    Set<Movement> getMovement();
-    void setMovement(Set<Movement> movement);
-
-    Set<Request> getRequest();
-    void setRequest(Set<Request> request);
-
-    Set<Supplier> getSupplier();
-    void setSupplier(Set<Supplier> supplier);
-
-    ProductDetail getDetail();
-    void setDetail(ProductDetail productDetail);
-
-    ProductSupplier getProductSupplier();
-    void setProductSupplier(ProductSupplier productSupplier);
 }

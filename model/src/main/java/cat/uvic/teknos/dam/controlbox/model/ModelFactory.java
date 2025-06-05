@@ -7,7 +7,6 @@ public interface ModelFactory {
     Supplier newSupplier();
     ProductSupplier newProductSupplier();
     Movement newMovement();
-    ProductDetail newProductDetail();
     OrderDetail newOrderDetail();
 
 }

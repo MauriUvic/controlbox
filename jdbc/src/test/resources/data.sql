@@ -1,7 +1,7 @@
 USE controlbox_test;
-INSERT INTO SUPPLIER VALUES (1, 'Supplier A', 'Contact A', 'contactA@example.com', '1234567890', 'Address A', 'TAXA');
-INSERT INTO SUPPLIER VALUES (2, 'Supplier B', 'Contact B', 'contactB@example.com', '0987654321', 'Address B', 'TAXB');
-INSERT INTO SUPPLIER VALUES (3, 'Supplier C', 'Contact C', 'contactC@example.com', '1122334455', 'Address C', 'TAXC');
+INSERT INTO SUPPLIER VALUES (1, 'Supplier A', 'Contact A', 'contactA@example.com', '1234567890', 'Address A');
+INSERT INTO SUPPLIER VALUES (2, 'Supplier B', 'Contact B', 'contactB@example.com', '0987654321', 'Address B');
+INSERT INTO SUPPLIER VALUES (3, 'Supplier C', 'Contact C', 'contactC@example.com', '1122334455', 'Address C');
 INSERT INTO PRODUCT VALUES (1, 'Product A', 'Description A', 100.0, 100);
 INSERT INTO PRODUCT VALUES (2, 'Product B', 'Description B', 50.0, 50);
 INSERT INTO PRODUCT VALUES (3, 'Product C', 'Description C', 200.0, 200);

@@ -5,14 +5,11 @@ public interface OrderDetail {
     Long getId();
     void setId(Long orderDetailId);
 
-    Integer getQuantity();
-    void setQuantity(Integer quantity);
-
     Double getUnitPrice();
     void setUnitPrice(Double unitPrice);
 
-    Double getSubtotal();
-    void setSubtotal(Double subtotal);
+    Double getQuantity();
+    void setQuantity(Double subtotal);
 
     Order getOrder();
     void setOrder(Order order);

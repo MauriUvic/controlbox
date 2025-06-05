@@ -5,7 +5,6 @@ import cat.uvic.teknos.dam.controlbox.model.Movement;
 import cat.uvic.teknos.dam.controlbox.model.OrderDetail;
 import cat.uvic.teknos.dam.controlbox.model.Request;
 import cat.uvic.teknos.dam.controlbox.model.Supplier;
-import cat.uvic.teknos.dam.controlbox.model.ProductDetail;
 
 import java.util.Set;
 
@@ -15,12 +14,10 @@ public class Product implements cat.uvic.teknos.dam.controlbox.model.Product {
     private String name;
     private String description;
     private Double unitPrice;
-    private int stock;
-    private Set<OrderDetail> orderDetail;
-    private Set<Movement> movement;
-    private Set<Request> request;
-    private Set<Supplier> supplier;
-    private ProductDetail detail;
+    private Double stock;
+
+
+
 
 
 
@@ -64,73 +61,16 @@ public class Product implements cat.uvic.teknos.dam.controlbox.model.Product {
         this.unitPrice = unitPrice;
     }
 
-
     @Override
-    public Integer getStock() {
+    public Double getStock() {
         return stock;
     }
     @Override
-    public void setStock(Integer stock) {
+    public void setStock(Double stock) {
         this.stock = stock;
     }
 
-    @Override
-    public Set<OrderDetail> getOrderDetail() {
-        return orderDetail;
-    }
 
-    @Override
-    public void setOrderDetail(Set<OrderDetail> orderDetail) {
-        this.orderDetail = orderDetail;
-    }
 
-    @Override
-    public Set<Movement> getMovement() {
-        return movement;
-    }
 
-    @Override
-    public void setMovement(Set<Movement> movement) {
-        this.movement = movement;
-    }
-
-    @Override
-    public Set<Request> getRequest() {
-        return request;
-    }
-
-    @Override
-    public void setRequest(Set<Request> request) {
-        this.request = request;
-    }
-
-    @Override
-    public Set<Supplier> getSupplier() {
-        return supplier;
-    }
-
-    @Override
-    public void setSupplier(Set<Supplier> supplier) {
-        this.supplier = supplier;
-    }
-
-    @Override
-    public ProductDetail getDetail() {
-        return detail;
-    }
-
-    @Override
-    public void setDetail(ProductDetail productDetail) {
-        this.detail = productDetail;
-    }
-
-    @Override
-    public ProductSupplier getProductSupplier() {
-        return (ProductSupplier) supplier;
-    }
-
-    @Override
-    public void setProductSupplier(ProductSupplier productSupplier) {
-
-    }
 }

@@ -4,50 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="JDBC-JPA(imp) compile ok, falla test">
-      <change afterPath="$PROJECT_DIR$/jdbc/src/test/resources/data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jpa/src/main/resources/persistence.xml" afterDir="false" />
+    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="tEST MOV RUN">
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcRequestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/model/JdbcProductSupplier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcMovementRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcRequestRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcSupplierRepostory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcMovement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcOrder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcOrderDetail.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcProduct.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/modal/JdbcSupplier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/JdbcMovementRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcMovementRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/JdbcProductRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcProductRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/JdbcRequestRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcRequestRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/JdbcSupplierRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcSupplierRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/test/resources/datasource.properties" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/resources/datasource.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jpa/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/jpa/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jpa/src/main/java/cat/uvic/teknos/dam/controlbox/jpa/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jpa/src/main/resources/datasource.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcProductRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcProductRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcRequestRepositoryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcSupplierRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcSupplierRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/test/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/test/resources/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ModelFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/OrderDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/OrderDetail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Stock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ProductDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ProductSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/Supplier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ModelFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/OrderDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/OrderDetail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ProductDetail.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Stock.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/MovementRepostory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/OrderRepostory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductRepostory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/Repository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RepositoryFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RequestRepostory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RequestRepostory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/StockRepostory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/SupplierRepostory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/SupplierRepostory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/Supplier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,11 +84,6 @@
     &quot;accountId&quot;: &quot;1480b7f7-cece-4aa3-9f4d-6b03d735847c&quot;
   }
 }</component>
-  <component name="JavaAutoRunManager">
-    <enabled-run-configurations>
-      <run-configuration type="GradleRunConfiguration" name="JdbcProductRepositoryTest" />
-    </enabled-run-configurations>
-  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -132,14 +105,21 @@
     "Gradle.JdbcMovementRepositoryTest.testGetAll.executor": "Debug",
     "Gradle.JdbcMovementRepositoryTest.testSaveAndGetMovement (1).executor": "Debug",
     "Gradle.JdbcMovementRepositoryTest.testSaveAndGetMovement.executor": "Run",
+    "Gradle.JdbcOrderRepositoryTest.executor": "Debug",
+    "Gradle.JdbcOrderRepositoryTest.testSaveAndGetOrder.executor": "Debug",
     "Gradle.JdbcProductRepositoryTest.executor": "Debug",
-    "Gradle.JdbcRequestRepositoryTest.executor": "Run",
+    "Gradle.JdbcProductRepositoryTest.testDeleteProduct.executor": "Debug",
+    "Gradle.JdbcProductRepositoryTest.testSaveAndGetProduct.executor": "Debug",
+    "Gradle.JdbcRequestRepositoryTest.executor": "Debug",
     "Gradle.JdbcRequestRepositoryTest.testSaveAndGetRequest.executor": "Run",
+    "Gradle.JdbcSupplierRepositoryTest.executor": "Debug",
     "Gradle.JpaRequestTest.executor": "Run",
     "Gradle.SingleConnectionDataSourceTest.getConnection.executor": "Run",
     "Gradle.SingleConnectionDataSourceTest.getDriver.executor": "Run",
     "Gradle.SingleConnectionDataSourceTest.getServer.executor": "Run",
+    "Gradle.controlbox:app [:app:cat.uvic.teknos.dam.controlbox.main.App.main()].executor": "Debug",
     "Gradle.controlbox:app [:app:org.example.app.JdbcApp.main()].executor": "Run",
+    "Gradle.controlbox:jdbc [:jdbc:cat.uvic.teknos.dam.controlbox.App.main()].executor": "Run",
     "JUnit.JdbcMovementRepositoryTest.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -155,7 +135,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -180,15 +160,28 @@
       <recent name="cat.uvic.teknos.dam.controlbox.jdbc.datasources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cat.uvic.teknos.dam.controlbox.jdbc.model" />
       <recent name="cat.uvic.teknos.dam.controlbox.modal.jpa" />
       <recent name="cat.uvic.teknos.dam.controlbox.jdbc" />
       <recent name="cat.uvic.teknos.dam.controlbox.jdbc.modal" />
       <recent name="cat.uvic.teknos.dam.controlbox.repositories" />
-      <recent name="cat.uvic.teknos.dam.controlbox" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.JdbcMovementRepositoryTest">
-    <configuration name="JdbcMovementRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cat.uvic.teknos.dam.controlbox.main.App" />
+      <module name="controlbox.app.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cat.uvic.teknos.dam.controlbox.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JdbcOrderRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -201,7 +194,7 @@
           <list>
             <option value=":jdbc:test" />
             <option value="--tests" />
-            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcMovementRepositoryTest&quot;" />
+            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcOrderRepositoryTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -212,7 +205,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="JdbcMovementRepositoryTest.getAll" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="JdbcOrderRepositoryTest.testSaveAndGetOrder" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -225,55 +218,7 @@
           <list>
             <option value=":jdbc:test" />
             <option value="--tests" />
-            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcMovementRepositoryTest.getAll&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="JdbcMovementRepositoryTest.testDeleteMovement" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":jdbc:test" />
-            <option value="--tests" />
-            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcMovementRepositoryTest.testDeleteMovement&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="JdbcMovementRepositoryTest.testSaveAndGetMovement (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":jdbc:test" />
-            <option value="--tests" />
-            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcMovementRepositoryTest.testSaveAndGetMovement&quot;" />
+            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcOrderRepositoryTest.testSaveAndGetOrder&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -308,6 +253,30 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="JdbcRequestRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":jdbc:test" />
+            <option value="--tests" />
+            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcRequestRepositoryTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="controlbox.model" />
       <method v="2">
@@ -321,11 +290,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.JdbcMovementRepositoryTest" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Gradle.JdbcOrderRepositoryTest" />
+        <item itemvalue="Gradle.JdbcOrderRepositoryTest.testSaveAndGetOrder" />
         <item itemvalue="Gradle.JdbcProductRepositoryTest" />
-        <item itemvalue="Gradle.JdbcMovementRepositoryTest.getAll" />
-        <item itemvalue="Gradle.JdbcMovementRepositoryTest.testSaveAndGetMovement (1)" />
-        <item itemvalue="Gradle.JdbcMovementRepositoryTest.testDeleteMovement" />
+        <item itemvalue="Gradle.JdbcRequestRepositoryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -369,7 +338,13 @@
       <workItem from="1748958003773" duration="2650000" />
       <workItem from="1748960723976" duration="6316000" />
       <workItem from="1748968738463" duration="5181000" />
-      <workItem from="1748973979396" duration="1584000" />
+      <workItem from="1748973979396" duration="2278000" />
+      <workItem from="1749126812662" duration="2228000" />
+      <workItem from="1749129081642" duration="2380000" />
+      <workItem from="1749131604032" duration="2760000" />
+      <workItem from="1749134480676" duration="8228000" />
+      <workItem from="1749144316542" duration="1260000" />
+      <workItem from="1749145827980" duration="3295000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial implementation of model classes and Gradle configuration">
       <option name="closed" value="true" />
@@ -419,7 +394,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748542536014</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="tEST MOV RUN">
+      <option name="closed" value="true" />
+      <created>1748976076827</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1748976076827</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,20 +413,21 @@
     <MESSAGE value="Refactor data source and repository classes; rename properties file and update database configurations" />
     <MESSAGE value="JDBC Compile OK" />
     <MESSAGE value="JDBC-JPA(imp) compile ok, falla test" />
-    <option name="LAST_COMMIT_MESSAGE" value="JDBC-JPA(imp) compile ok, falla test" />
+    <MESSAGE value="tEST MOV RUN" />
+    <option name="LAST_COMMIT_MESSAGE" value="tEST MOV RUN" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcProductRepositoryTest.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="17" />
+          <url>file://$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcSupplierRepositoryTest.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/jdbc/src/test/java/cat/uvic/teknos/dam/controlbox/jdbc/repositories/JdbcProductRepositoryTest.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="18" />
+          <url>file://$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

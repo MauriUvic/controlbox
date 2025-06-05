@@ -68,23 +68,6 @@ public class Request implements cat.uvic.teknos.dam.controlbox.model.Request {
         this.requester = requester;
     }
 
-    public int getRequestedQuantity() {
-        return requestedQuantity != null ? requestedQuantity : 0;
-    }
-
-    public void setRequestedQuantity(Integer integer) {
-        this.requestedQuantity = integer;
-    }
-
-    public void setRequestDate(String date) {
-        this.date = date;
-    }
-
-
-
-    public String getRequestDate() {
-        return date != null ? date : "";
-    }
 
 
 }

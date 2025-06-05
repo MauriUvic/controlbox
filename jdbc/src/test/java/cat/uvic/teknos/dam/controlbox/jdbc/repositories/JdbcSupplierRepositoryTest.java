@@ -1,67 +1,43 @@
 package cat.uvic.teknos.dam.controlbox.jdbc.repositories;
 
-import cat.uvic.teknos.dam.controlbox.jdbc.JdbcSupplierRepostory;
-import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
-import cat.uvic.teknos.dam.controlbox.jdbc.model.JdbcSupplier;
+import cat.uvic.teknos.dam.controlbox.jdbc.JdbcSupplierRepository;
+import cat.uvic.teknos.dam.controlbox.jdbc.datasources.SingleConnectionDataSource;
+import cat.uvic.teknos.dam.controlbox.jdbc.jupiter.LoadDatabaseExtension;
 import cat.uvic.teknos.dam.controlbox.model.Supplier;
+import cat.uvic.teknos.dam.controlbox.jdbc.model.JdbcSupplier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Set;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(LoadDatabaseExtension.class)
 class JdbcSupplierRepositoryTest {
-    private JdbcSupplierRepostory repository;
-    private Connection connection;
+    private JdbcSupplierRepository repository;
 
     @BeforeEach
-    void setUp() throws SQLException {
-
-        connection = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
-        var dataSource = new DataSource() {
-            @Override
-            public Connection getConnection() {
-                return connection;
-            }
-        };
-        repository = new JdbcSupplierRepostory(dataSource);
-
-
-        try (var statement = connection.createStatement()) {
-            statement.execute("""
-                CREATE TABLE IF NOT EXISTS SUPPLIER (
-                    ID IDENTITY PRIMARY KEY,
-                    COMPANY_NAME VARCHAR(255),
-                    CONTACT_NAME VARCHAR(255),
-                    EMAIL VARCHAR(255),
-                    PHONE VARCHAR(255),
-                    ADDRESS VARCHAR(255)
-                )
-            """);
-        }
+    void setUp() {
+        var dataSource = new SingleConnectionDataSource();
+        repository = new JdbcSupplierRepository(dataSource);
     }
 
     @Test
     void testSaveAndGetSupplier() {
-
+        // Arrange
         Supplier supplier = new JdbcSupplier();
-        supplier.setCompanyName("Test Company");
-        supplier.setContactName("John Doe");
-        supplier.setEmail("john@example.com");
-        supplier.setPhone("123456789");
-        supplier.setAddress("Test Address");
+        supplier.setName("Supplier B");
+        supplier.setContactName("Contact B");
+        supplier.setEmail("contactB@example.com");
+        supplier.setPhone("0987654321");
+        supplier.setAddress("Address B");
 
+        // Act
+        repository.save(supplier);
+        Supplier retrieved = repository.get(2);
 
-
-        Supplier retrieved = (Supplier) repository.getSupplierById(1);
-
-
+        // Assert
         assertNotNull(retrieved);
-        assertEquals(supplier.getCompanyName(), retrieved.getCompanyName());
+        assertEquals(supplier.getName(), retrieved.getName());
         assertEquals(supplier.getContactName(), retrieved.getContactName());
         assertEquals(supplier.getEmail(), retrieved.getEmail());
         assertEquals(supplier.getPhone(), retrieved.getPhone());
@@ -70,27 +46,15 @@ class JdbcSupplierRepositoryTest {
 
     @Test
     void testDeleteSupplier() {
+        // Arrange
+        //repository.save(supplier); // Si es necesario, crea un supplier antes
 
-
-
-
+        // Act
         repository.delete(1);
-        Supplier retrieved = (Supplier) repository.getSupplierById(1);
+        Supplier retrieved = repository.get(1);
 
-
+        // Assert
         assertNull(retrieved);
     }
-
-    @Test
-    void testGetAll() {
-
-
-
-        Set<Supplier> suppliers = repository.getAll();
-
-
-        assertEquals(2, suppliers.size());
-        assertTrue(suppliers.contains(1));
-        assertTrue(suppliers.contains(2));
-    }
 }
+
