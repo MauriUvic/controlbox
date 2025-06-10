@@ -6,6 +6,7 @@ import cat.uvic.teknos.dam.controlbox.model.Supplier;
 public class ProductSupplier implements cat.uvic.teknos.dam.controlbox.model.ProductSupplier {
     private Product product;
     private Supplier supplier;
+    private Long id;
 
     @Override
     public Product getProduct() {
@@ -25,5 +26,15 @@ public class ProductSupplier implements cat.uvic.teknos.dam.controlbox.model.Pro
     @Override
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 }

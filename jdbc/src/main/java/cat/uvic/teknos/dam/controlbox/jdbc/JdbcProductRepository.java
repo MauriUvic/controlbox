@@ -20,12 +20,11 @@ public class JdbcProductRepository implements ProductRepository {
 
     @Override
     public Product getProductByName(String name) {
-        var connection = dataSource.getConnection();
-        try (var preparedStatement = connection.prepareStatement(
+        try (var connection = dataSource.getConnection();
+             var preparedStatement = connection.prepareStatement(
                 "SELECT * FROM PRODUCT WHERE NAME = ?")) {
             preparedStatement.setString(1, name);
             var resultSet = preparedStatement.executeQuery();
-
             if (resultSet.next()) {
                 var product = new JdbcProduct();
                 product.setId(resultSet.getLong("ID"));
@@ -33,7 +32,6 @@ public class JdbcProductRepository implements ProductRepository {
                 product.setDescription(resultSet.getString("DESCRIPTION"));
                 product.setUnitPrice(resultSet.getDouble("PRICE"));
                 product.setStock(resultSet.getDouble("STOCK"));
-
                 return product;
             }
             return null;
@@ -102,8 +100,8 @@ public class JdbcProductRepository implements ProductRepository {
 
     @Override
     public void delete(Integer value) {
-        var connection = dataSource.getConnection();
-        try (var preparedStatement = connection.prepareStatement(
+        try (var connection = dataSource.getConnection();
+             var preparedStatement = connection.prepareStatement(
                 "DELETE FROM PRODUCT WHERE ID = ?")) {
             preparedStatement.setInt(1, value);
             preparedStatement.executeUpdate();
@@ -112,19 +110,25 @@ public class JdbcProductRepository implements ProductRepository {
         }
     }
 
-
     @Override
     public Set<Product> getAll() {
-        var connection = dataSource.getConnection();
-        try (var statement = connection.createStatement()) {
-            var resultSet = statement.executeQuery("SELECT ID FROM PRODUCT");
-            Set<Integer> products = new HashSet<>();
+        Set<Product> products = new HashSet<>();
+        try (var connection = dataSource.getConnection();
+             var statement = connection.createStatement()) {
+            var resultSet = statement.executeQuery("SELECT * FROM PRODUCT");
             while (resultSet.next()) {
-                products.add(resultSet.getInt("ID"));
+                var product = new JdbcProduct();
+                product.setId(resultSet.getLong("ID"));
+                product.setName(resultSet.getString("NAME"));
+                product.setDescription(resultSet.getString("DESCRIPTION"));
+                product.setUnitPrice(resultSet.getDouble("PRICE"));
+                product.setStock(resultSet.getDouble("STOCK"));
+                products.add(product);
             }
-            return null;
+            return products;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 }
+

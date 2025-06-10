@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class SingleConnectionDataSource implements DataSource {
-    private Connection connection;
     private final String driver;
     private final String server;
     private final String database;
@@ -60,17 +59,15 @@ public class SingleConnectionDataSource implements DataSource {
 
     @Override
     public Connection getConnection() {
-        if (connection == null) {
-            try {
-                connection = DriverManager.getConnection(
-                        String.format("jdbc:%s://%s/%s", driver, server, database),
-                        user,
-                        password
-                );
-            } catch (SQLException e) {
-                throw new DataSourceException("Failed to establish database connection", e);
-            }
+        try {
+            return DriverManager.getConnection(
+                String.format("jdbc:%s://%s/%s", driver, server, database),
+                user,
+                password
+            );
+        } catch (SQLException e) {
+            throw new DataSourceException("Failed to establish database connection", e);
         }
-        return connection;
     }
 }
+

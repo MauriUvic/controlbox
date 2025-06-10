@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="tEST MOV RUN">
+    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="test2323">
+      <change afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductSupplierRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/cat/uvic/teknos/dam/controlbox/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cat/uvic/teknos/dam/controlbox/main/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/model/JdbcProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/model/JdbcProductSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/model/JdbcRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/model/JdbcRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ModelFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ProductSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ProductSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductSupplierRepostory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RepositoryFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RepositoryFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +339,8 @@
       <workItem from="1749144316542" duration="1260000" />
       <workItem from="1749145827980" duration="4370000" />
       <workItem from="1749558047467" duration="6850000" />
-      <workItem from="1749565544532" duration="2828000" />
+      <workItem from="1749565544532" duration="8123000" />
+      <workItem from="1749573778186" duration="2592000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial implementation of model classes and Gradle configuration">
       <option name="closed" value="true" />
@@ -393,7 +406,23 @@
       <option name="project" value="LOCAL" />
       <updated>1749149589617</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="test2323">
+      <option name="closed" value="true" />
+      <created>1749569306906</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1749569306906</updated>
+    </task>
+    <task id="LOCAL-00010" summary="test2323">
+      <option name="closed" value="true" />
+      <created>1749569357679</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1749569357679</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,7 +434,8 @@
     <MESSAGE value="JDBC Compile OK" />
     <MESSAGE value="JDBC-JPA(imp) compile ok, falla test" />
     <MESSAGE value="tEST MOV RUN" />
-    <option name="LAST_COMMIT_MESSAGE" value="tEST MOV RUN" />
+    <MESSAGE value="test2323" />
+    <option name="LAST_COMMIT_MESSAGE" value="test2323" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -417,8 +447,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java</url>
-          <line>98</line>
+          <line>96</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/cat/uvic/teknos/dam/controlbox/main/App.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -95,14 +95,19 @@ public class JdbcOrderRepository implements OrderRepository {
     @Override
     public Set<Order> getAll() {
         var connection = dataSource.getConnection();
+        Set<Order> orders = new HashSet<>();
         try (var statement = connection.createStatement()) {
-            var resultSet = statement.executeQuery("SELECT ID FROM `ORDER`");
-            Set<Integer> orders = new HashSet<>();
+            var resultSet = statement.executeQuery("SELECT * FROM `ORDER`");
             while (resultSet.next()) {
-                orders.add(resultSet.getInt("ID"));
+                var order = new JdbcOrder();
+                order.setId(resultSet.getLong("ID"));
+                order.setDate(resultSet.getString("DATE"));
+                order.setTotalAmount(resultSet.getDouble("TOTAL_AMOUNT"));
+                order.setStatus(resultSet.getString("STATUS"));
+                order.setDeliveryDate(resultSet.getString("DELIVERY_DATE"));
+                orders.add(order);
             }
-            // TODO
-            return null;
+            return orders;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -8,4 +8,6 @@ public interface ProductSupplier {
     Supplier getSupplier();
     void setSupplier(Supplier supplier);
 
+    Long getId();
+    void setId(Long id);
 }

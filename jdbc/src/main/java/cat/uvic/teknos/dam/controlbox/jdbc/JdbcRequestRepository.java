@@ -29,11 +29,10 @@ public class JdbcRequestRepository implements RequestRepostory {
                 var jdbcRequest = new JdbcRequest();
                 jdbcRequest.setId(resultSet.getLong("ID"));
                 jdbcRequest.setProduct(resultSet.getLong("PRODUCT_ID"));
-                jdbcRequest.setQuantity(resultSet.getInt("REQUESTED_QUANTITY"));
+                jdbcRequest.setQuantity(resultSet.getInt("QUANTITY"));
                 jdbcRequest.setDate(resultSet.getString("REQUEST_DATE"));
                 jdbcRequest.setStatus(resultSet.getString("STATUS"));
                 jdbcRequest.setRequester(resultSet.getString("REQUESTER"));
-
 
                 return jdbcRequest;
             }
@@ -46,21 +45,27 @@ public class JdbcRequestRepository implements RequestRepostory {
     @Override
     public void save(Request request) {
         var connection = dataSource.getConnection();
-        if(request.getId() == null){
-        try (var preparedStatement = connection.prepareStatement(
-                "INSERT INTO REQUEST (PRODUCT_ID, REQUESTED_QUANTITY, REQUEST_DATE, STATUS, REQUESTER) VALUES (?, ?, ?, ?, ?)")) {
-            preparedStatement.setLong(1, request.getProduct());
-            preparedStatement.setInt(2, request.getQuantity());
-            preparedStatement.setString(3, request.getDate());
-            preparedStatement.setString(4, request.getStatus());
-            preparedStatement.setString(5, request.getRequester());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }}
-        else {
+        if (request.getId() == null) {
             try (var preparedStatement = connection.prepareStatement(
-                    "UPDATE REQUEST SET PRODUCT_ID = ?, REQUESTED_QUANTITY = ?, REQUEST_DATE = ?, STATUS = ?, REQUESTER = ? WHERE ID = ?")) {
+                    "INSERT INTO REQUEST (PRODUCT_ID, QUANTITY, REQUEST_DATE, STATUS, REQUESTER) VALUES (?, ?, ?, ?, ?)",
+                    java.sql.Statement.RETURN_GENERATED_KEYS)) {
+                preparedStatement.setLong(1, request.getProduct());
+                preparedStatement.setInt(2, request.getQuantity());
+                preparedStatement.setString(3, request.getDate());
+                preparedStatement.setString(4, request.getStatus());
+                preparedStatement.setString(5, request.getRequester());
+                preparedStatement.executeUpdate();
+                try (var generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        request.setId(generatedKeys.getLong(1));
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try (var preparedStatement = connection.prepareStatement(
+                    "UPDATE REQUEST SET PRODUCT_ID = ?, QUANTITY = ?, REQUEST_DATE = ?, STATUS = ?, REQUESTER = ? WHERE ID = ?")) {
                 preparedStatement.setLong(1, request.getProduct());
                 preparedStatement.setInt(2, request.getQuantity());
                 preparedStatement.setString(3, request.getDate());
@@ -95,11 +100,18 @@ public class JdbcRequestRepository implements RequestRepostory {
     @Override
     public Set<Request> getAll() {
         var connection = dataSource.getConnection();
+        Set<Request> requests = new HashSet<>();
         try (var statement = connection.createStatement()) {
-            var resultSet = statement.executeQuery("SELECT ID FROM REQUEST");
-            Set<Request> requests = new HashSet<>();
+            var resultSet = statement.executeQuery("SELECT * FROM REQUEST");
             while (resultSet.next()) {
-                //requests.add(resultSet.getInt("ID"));
+                var jdbcRequest = new JdbcRequest();
+                jdbcRequest.setId(resultSet.getLong("ID"));
+                jdbcRequest.setProduct(resultSet.getLong("PRODUCT_ID"));
+                jdbcRequest.setQuantity(resultSet.getInt("QUANTITY"));
+                jdbcRequest.setDate(resultSet.getString("REQUEST_DATE"));
+                jdbcRequest.setStatus(resultSet.getString("STATUS"));
+                jdbcRequest.setRequester(resultSet.getString("REQUESTER"));
+                requests.add(jdbcRequest);
             }
             return requests;
         } catch (SQLException e) {
@@ -107,3 +119,4 @@ public class JdbcRequestRepository implements RequestRepostory {
         }
     }
 }
+
