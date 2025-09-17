@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="test2323">
-      <change afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductSupplierRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/cat/uvic/teknos/dam/controlbox/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cat/uvic/teknos/dam/controlbox/main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcOrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/JdbcRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/datasources/SingleConnectionDataSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/model/JdbcProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/model/JdbcProductSupplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/model/JdbcRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/java/cat/uvic/teknos/dam/controlbox/jdbc/model/JdbcRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/ProductSupplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ProductSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/cat/uvic/teknos/dam/controlbox/model/impl/ProductSupplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/ProductSupplierRepostory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RepositoryFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/src/main/java/cat/uvic/teknos/dam/controlbox/repositories/RepositoryFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/out/test/resources/datasource.properties" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/out/test/resources/datasource.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc/src/main/resources/datasource.properties" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc/src/main/resources/datasource.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jpa/out/test/resources/datasource.properties" beforeDir="false" afterPath="$PROJECT_DIR$/jpa/out/test/resources/datasource.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,9 +65,14 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MauriUvic/controlbox.git&quot;,
-    &quot;accountId&quot;: &quot;1480b7f7-cece-4aa3-9f4d-6b03d735847c&quot;
+    &quot;url&quot;: &quot;https://github.com/MauriUvic/controlbox&quot;,
+    &quot;accountId&quot;: &quot;fb66dc97-b96c-4553-ad1e-86cf7eaa9a45&quot;
   }
+}</component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\10059541\.gradle\wrapper\dists\gradle-8.13-bin\5xuhj0ry160q40clulazy9h7d\gradle-8.13" javaHome="C:\Users\10059541\.jdks\valhalla-ea-23-valhalla+1-90" gradleVersion="8.13" />
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
 }</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -116,6 +113,7 @@
     &quot;JUnit.JdbcMovementRepositoryTest.executor&quot;: &quot;Debug&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
@@ -128,10 +126,10 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -294,8 +292,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
       </set>
     </attachedChunks>
   </component>
@@ -341,6 +339,8 @@
       <workItem from="1749558047467" duration="6850000" />
       <workItem from="1749565544532" duration="8123000" />
       <workItem from="1749573778186" duration="2592000" />
+      <workItem from="1758114780367" duration="315000" />
+      <workItem from="1758115127802" duration="4714000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial implementation of model classes and Gradle configuration">
       <option name="closed" value="true" />
