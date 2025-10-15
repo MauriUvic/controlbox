@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "controlbox"
-include("app", "list", "utilities","model", "repositories","jdbc","jpa")
+include("app", "list", "utilities","model", "repositories","jdbc","jpa","clients:console","server")
