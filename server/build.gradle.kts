@@ -9,6 +9,7 @@ plugins {
 dependencies {
     implementation(project(":jdbc"))
     implementation(project(":model"))
+    implementation(project(":repositories"))
 
     implementation("com.mysql:mysql-connector-j:9.3.0")
     implementation("com.athaydes.rawhttp:rawhttp-core:2.6.0")
