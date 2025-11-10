@@ -7,15 +7,18 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ClientHandler implements Runnable {
     private final Socket clientSocket;
     private final ProductController productController;
+    private final List<ClientHandler> connectedClients;
 
-    public ClientHandler(Socket clientSocket, ProductController productController) {
+    public ClientHandler(Socket clientSocket, ProductController productController, List<ClientHandler> clients) {
         this.clientSocket = clientSocket;
         this.productController = productController;
+        this.connectedClients = clients;
     }
 
     @Override
@@ -24,25 +27,32 @@ public class ClientHandler implements Runnable {
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
             while (!clientSocket.isClosed()) {
-                String response;
+                String requestLine = in.readLine();
+                if (requestLine == null) {
+                    System.out.println("Server: Client closed connection.");
+                    break;
+                }
+
+                System.out.println("Server: Received request line: " + requestLine);
+
+                String[] requestParts = requestLine.split(" ");
+                if (requestParts.length < 2) {
+                    out.print("HTTP/1.1 400 Bad Request\r\n\r\nInvalid request");
+                    out.flush();
+                    continue;
+                }
+                String method = requestParts[0];
+                String path = requestParts[1];
+
+                if ("DISCONNECT".equalsIgnoreCase(method)) {
+                    System.out.println("Server: Received disconnect from " + clientSocket.getInetAddress());
+                    out.print("HTTP/1.1 200 OK\r\n\r\nDisconnecting\r\n");
+                    out.flush();
+                    Thread.sleep(1000);
+                    break;
+                }
+
                 try {
-                    String requestLine = in.readLine();
-                    if (requestLine == null) {
-                        System.out.println("Server: Client closed connection.");
-                        break;
-                    }
-
-                    System.out.println("Server: Received request line: " + requestLine);
-
-                    String[] requestParts = requestLine.split(" ");
-                    if (requestParts.length < 2) {
-                        out.print("HTTP/1.1 400 Bad Request\r\n\r\nInvalid request");
-                        out.flush();
-                        continue;
-                    }
-                    String method = requestParts[0];
-                    String path = requestParts[1];
-
                     Map<String, String> headers = new HashMap<>();
                     String headerLine;
                     while ((headerLine = in.readLine()) != null && !headerLine.isEmpty()) {
@@ -62,22 +72,37 @@ public class ClientHandler implements Runnable {
                         }
                     }
 
-                    response = productController.processRequest(method, path, body);
+                    String response = productController.processRequest(method, path, body);
+                    out.print(response);
+                    out.flush();
+                    System.out.println("Server: Response sent.");
+
                 } catch (SocketException e) {
                     System.out.println("Server: Client disconnected abruptly: " + e.getMessage());
                     break;
                 } catch (Exception e) {
                     System.err.println("Server: An error occurred while handling client: " + e.getMessage());
                     e.printStackTrace();
-                    response = "HTTP/1.1 500 Internal Server Error\r\n\r\nInternal Server Error";
+                    String response = "HTTP/1.1 500 Internal Server Error\r\n\r\nInternal Server Error";
+                    out.print(response);
+                    out.flush();
                 }
-
-                out.print(response);
-                out.flush();
-                System.out.println("Server: Response sent.");
             }
         } catch (IOException e) {
             System.err.println("Server: I/O error with client: " + e.getMessage());
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Server: Client handler interrupted.");
+        } finally {
+            try {
+                connectedClients.remove(this);
+                if (!clientSocket.isClosed()) {
+                    clientSocket.close();
+                }
+                System.out.println("Server: Connection closed for " + clientSocket.getInetAddress() + ". Total clients: " + connectedClients.size());
+            } catch (IOException e) {
+                System.err.println("Server: Error closing client socket: " + e.getMessage());
+            }
         }
     }
 }

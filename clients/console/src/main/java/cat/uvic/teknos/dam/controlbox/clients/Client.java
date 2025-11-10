@@ -7,49 +7,89 @@ import rawhttp.core.RawHttp;
 import rawhttp.core.RawHttpRequest;
 import rawhttp.core.RawHttpResponse;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class Client {
     private static final RawHttp rawHttp = new RawHttp();
     private static final String HOST = "localhost";
     private static final int PORT = 5000;
     private static final ObjectMapper mapper = new ObjectMapper();
+    private static final long INACTIVITY_TIMEOUT_MS = 2 * 60 * 1000; // 2 minutes
+    private static final AtomicLong lastActivityTime = new AtomicLong(System.currentTimeMillis());
 
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in);
-             Socket socket = new Socket(HOST, PORT)) { // Create a single socket for the session
-
+        try (Socket socket = new Socket(HOST, PORT)) {
             System.out.println("Connected to server at " + HOST + ":" + PORT);
 
-            String choice;
+            Thread inputThread = new Thread(() -> handleUserInput(socket));
+            inputThread.setDaemon(true);
+            inputThread.start();
+
+            while (inputThread.isAlive()) {
+                long inactivityDuration = System.currentTimeMillis() - lastActivityTime.get();
+                if (inactivityDuration > INACTIVITY_TIMEOUT_MS) {
+                    System.out.println("\nInactivity detected. Sending disconnect message.");
+                    sendDisconnectMessage(socket);
+                    break;
+                }
+                Thread.sleep(1000);
+            }
+
+        } catch (IOException e) {
+            System.err.println("Client error: " + e.getMessage());
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Client main thread interrupted.");
+        }
+        System.out.println("Client disconnected.");
+    }
+
+    private static void handleUserInput(Socket socket) {
+        try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 printMainMenu();
-                choice = scanner.nextLine();
+                // We use a separate thread to read from System.in to avoid blocking the main loop
+                String choice = scanner.nextLine();
+                lastActivityTime.set(System.currentTimeMillis());
 
                 if ("exit".equalsIgnoreCase(choice)) {
+                    sendDisconnectMessage(socket);
                     break;
                 }
 
                 switch (choice) {
                     case "1":
-                        manageProducts(socket, scanner); // Pass the socket to manageProducts
+                        manageProducts(socket, scanner);
                         break;
                     default:
                         System.out.println("Invalid option. Please try again.");
                 }
             }
-
-        } catch (IOException e) {
-            System.err.println("Client error: " + e.getMessage());
-            throw new ClientException("Error connecting to server or during communication", e);
         } catch (Exception e) {
-            System.err.println("An unexpected client error occurred: " + e.getMessage());
-            e.printStackTrace();
+            // This might happen if the main thread closes the socket
+            System.out.println("Input handler finished.");
         }
-        System.out.println("Client disconnected.");
     }
+
+    private static void sendDisconnectMessage(Socket socket) {
+        try {
+            RawHttpRequest request = rawHttp.parseRequest(String.format(
+                    "DISCONNECT / HTTP/1.1\r\n" +
+                            "Host: %s:%d\r\n\r\n", HOST, PORT));
+            request.writeTo(socket.getOutputStream());
+
+            RawHttpResponse<?> response = rawHttp.parseResponse(socket.getInputStream()).eagerly();
+            System.out.println("Server ACK: " + response.getStartLine().getReason());
+        } catch (IOException e) {
+            System.err.println("Error sending disconnect message: " + e.getMessage());
+        }
+    }
+
 
     private static void printMainMenu() {
         System.out.println("\n--- Client Terminal ---");
@@ -58,34 +98,35 @@ public class Client {
         System.out.print("Choose an option: ");
     }
 
-    // Pass the socket to manageProducts
     private static void manageProducts(Socket socket, Scanner scanner) {
         String productChoice;
         while (true) {
             printProductMenu();
             productChoice = scanner.nextLine();
+            lastActivityTime.set(System.currentTimeMillis());
+
 
             if ("back".equalsIgnoreCase(productChoice)) {
                 break;
             }
 
-            // No try-catch here, let sendRequestAndPrintResponse handle its own errors
             switch (productChoice) {
-                case "1": // Get all products
+                case "1":
                     sendGetRequest(socket, "/products");
                     break;
-                case "2": // Get by id
+                case "2":
                     System.out.print("Enter product ID: ");
                     String id = scanner.nextLine();
+                    lastActivityTime.set(System.currentTimeMillis());
                     sendGetRequest(socket, "/products/" + id);
                     break;
-                case "3": // Create product
+                case "3":
                     createProduct(socket, scanner);
                     break;
-                case "4": // Update product
+                case "4":
                     updateProduct(socket, scanner);
                     break;
-                case "5": // Delete product
+                case "5":
                     deleteProduct(socket, scanner);
                     break;
                 default:
@@ -140,6 +181,7 @@ public class Client {
     private static void updateProduct(Socket socket, Scanner scanner) {
         System.out.print("Enter product ID to update: ");
         String idStr = scanner.nextLine();
+        lastActivityTime.set(System.currentTimeMillis());
         try {
             long id = Long.parseLong(idStr);
             ProductImpl updatedProduct = getProductDetailsFromUser(scanner, true);
@@ -170,6 +212,7 @@ public class Client {
     private static void deleteProduct(Socket socket, Scanner scanner) {
         System.out.print("Enter product ID to delete: ");
         String idStr = scanner.nextLine();
+        lastActivityTime.set(System.currentTimeMillis());
         try {
             int id = Integer.parseInt(idStr);
             RawHttpRequest request = rawHttp.parseRequest(String.format(
@@ -188,19 +231,23 @@ public class Client {
         ProductImpl product = new ProductImpl();
         System.out.print("Enter product name: ");
         product.setName(scanner.nextLine());
+        lastActivityTime.set(System.currentTimeMillis());
         System.out.print("Enter product description: ");
         product.setDescription(scanner.nextLine());
+        lastActivityTime.set(System.currentTimeMillis());
         System.out.print("Enter product unit price: ");
         product.setUnitPrice(Double.parseDouble(scanner.nextLine()));
+        lastActivityTime.set(System.currentTimeMillis());
         System.out.print("Enter product stock: ");
         product.setStock(Double.parseDouble(scanner.nextLine()));
+        lastActivityTime.set(System.currentTimeMillis());
         return product;
     }
 
     private static void sendRequestAndPrintResponse(Socket socket, RawHttpRequest request, boolean isGetAllProducts) {
         try {
             request.writeTo(socket.getOutputStream());
-            socket.getOutputStream().flush(); // Ensure request is sent
+            socket.getOutputStream().flush();
 
             RawHttpResponse<?> response = rawHttp.parseResponse(socket.getInputStream()).eagerly();
 
@@ -216,7 +263,6 @@ public class Client {
                         System.out.println("ID: " + product.getId() + ", Name: " + product.getName() + ", Description: " + product.getDescription() + ", Price: " + product.getUnitPrice() + ", Stock: " + product.getStock());
                     }
                 } else {
-                    // Try to parse as a single product, or just print raw JSON
                     try {
                         ProductImpl product = mapper.readValue(json, ProductImpl.class);
                         System.out.println("\n--- Product Details ---");
@@ -226,7 +272,6 @@ public class Client {
                         System.out.println("Unit Price: " + product.getUnitPrice());
                         System.out.println("Stock: " + product.getStock());
                     } catch (Exception e) {
-                        // If it's not a single product, print the raw JSON (e.g., for 204 No Content responses)
                         System.out.println("Raw JSON or non-JSON response: " + json);
                     }
                 }
@@ -236,7 +281,6 @@ public class Client {
             System.out.println("-----------------------\n");
         } catch (IOException e) {
             System.err.println("Communication error during request: " + e.getMessage());
-            // Do not re-throw, allow the client to continue
         } catch (Exception e) {
             System.err.println("An unexpected error occurred while processing response: " + e.getMessage());
             e.printStackTrace();
