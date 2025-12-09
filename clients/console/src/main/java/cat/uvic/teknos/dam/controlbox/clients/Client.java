@@ -1,7 +1,7 @@
 package cat.uvic.teknos.dam.controlbox.clients;
 
 import cat.uvic.teknos.dam.controlbox.clients.models.ProductImpl;
-import cat.uvic.teknos.dam.controlbox.utilities.security.CryptoUtils;
+import cat.uvic.teknos.dam.controlbox.security.CryptoUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import rawhttp.core.RawHttp;
 import rawhttp.core.RawHttpRequest;
@@ -15,10 +15,8 @@ import java.io.SequenceInputStream;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Client {
@@ -29,6 +27,8 @@ public class Client {
     private static final long INACTIVITY_TIMEOUT_MS = 2 * 60 * 1000; // 2 minutes
     private static final AtomicLong lastActivityTime = new AtomicLong(System.currentTimeMillis());
     private static String sessionKey = null;
+    private static final CryptoUtils cryptoUtils = new CryptoUtils();
+
 
     public static void main(String[] args) {
         try (Socket socket = new Socket(HOST, PORT)) {
@@ -172,20 +172,34 @@ public class Client {
             RawHttpResponse<?> response = rawHttp.parseResponse(sanitizeResponseStream(socket.getInputStream())).eagerly();
             if (response.getBody().isPresent()) {
                 String encryptedKey = response.getBody().get().toString();
-                sessionKey = CryptoUtils.asymmetricDecrypt(clientAlias, encryptedKey);
+
+                // Use the new parameterized decrypt method
+                String keystorePath = clientAlias + ".p12"; // e.g., "client1.p12"
+                String keystorePassword = "password";
+                String keystoreType = "PKCS12";
+
+                sessionKey = cryptoUtils.asymmetricDecrypt(clientAlias, encryptedKey, keystorePath, keystorePassword, keystoreType);
                 System.out.println("Session key successfully received and decrypted.");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error requesting session key: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     private static void sendGetRequest(Socket socket, String path) {
+        String headers = "";
+        if (sessionKey != null) {
+            // For GET requests, we don't have a body to encrypt, but we need to signal encryption context
+            headers += "X-Encrypted: true\r\n";
+        }
+
         RawHttpRequest request = rawHttp.parseRequest(String.format(
                 "GET %s HTTP/1.1\r\n" +
                         "User-Agent: console\r\n" +
                         "Host: %s:%d\r\n" +
-                        "\r\n", path, HOST, PORT));
+                        "%s" + // Additional headers
+                        "\r\n", path, HOST, PORT, headers));
 
         sendRequestAndPrintResponse(socket, request, path.equals("/products"));
     }
@@ -203,10 +217,10 @@ public class Client {
         String body = productJson;
         String headers = "";
         if (sessionKey != null) {
-            body = CryptoUtils.crypt(productJson);
+            body = cryptoUtils.crypt(productJson, sessionKey);
             headers += "X-Encrypted: true\r\n";
         }
-        String hash = CryptoUtils.hash(body);
+        String hash = cryptoUtils.hash(body);
         headers += "X-Hash: " + hash + "\r\n";
 
 
@@ -242,10 +256,10 @@ public class Client {
             String body = productJson;
             String headers = "";
             if (sessionKey != null) {
-                body = CryptoUtils.crypt(productJson);
+                body = cryptoUtils.crypt(productJson, sessionKey);
                 headers += "X-Encrypted: true\r\n";
             }
-            String hash = CryptoUtils.hash(body);
+            String hash = cryptoUtils.hash(body);
             headers += "X-Hash: " + hash + "\r\n";
 
             RawHttpRequest request = rawHttp.parseRequest(String.format(
@@ -313,7 +327,7 @@ public class Client {
                 String body = response.getBody().get().toString();
 
                 String receivedHash = response.getHeaders().getFirst("X-Hash").orElse(null);
-                String computedHash = CryptoUtils.hash(body);
+                String computedHash = cryptoUtils.hash(body);
 
                 if (receivedHash != null && !receivedHash.equals(computedHash)) {
                     System.err.println("Error: Response hash does not match!");
@@ -322,7 +336,11 @@ public class Client {
 
                 String json = body;
                 if (response.getHeaders().getFirst("X-Encrypted").orElse("false").equals("true")) {
-                    json = CryptoUtils.decrypt(body);
+                    if (sessionKey == null) {
+                        System.err.println("Error: Encrypted response received but no session key is available.");
+                        return;
+                    }
+                    json = cryptoUtils.decrypt(body, sessionKey);
                 }
 
 

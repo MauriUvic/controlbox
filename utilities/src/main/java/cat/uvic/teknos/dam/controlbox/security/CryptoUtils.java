@@ -60,10 +60,17 @@ public class CryptoUtils {
         return hexString.toString();
     }
 
+    // Overload for non-session-based encryption
     public String crypt(String plainText) {
+        return crypt(plainText, properties.getProperty("symmetric.key"));
+    }
+
+    // Main symmetric encryption method using a specific key
+    public String crypt(String plainText, String base64SessionKey) {
         try {
             Cipher cipher = Cipher.getInstance(properties.getProperty("symmetric.algorithm"));
-            SecretKeySpec key = new SecretKeySpec(properties.getProperty("symmetric.key").getBytes(StandardCharsets.UTF_8), "AES");
+            byte[] decodedKey = Base64.getDecoder().decode(base64SessionKey);
+            SecretKeySpec key = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
             IvParameterSpec iv = new IvParameterSpec(properties.getProperty("symmetric.iv").getBytes(StandardCharsets.UTF_8));
             cipher.init(Cipher.ENCRYPT_MODE, key, iv);
             byte[] cipherText = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
@@ -73,10 +80,17 @@ public class CryptoUtils {
         }
     }
 
+    // Overload for non-session-based decryption
     public String decrypt(String base64CipherText) {
+        return decrypt(base64CipherText, properties.getProperty("symmetric.key"));
+    }
+
+    // Main symmetric decryption method using a specific key
+    public String decrypt(String base64CipherText, String base64SessionKey) {
         try {
             Cipher cipher = Cipher.getInstance(properties.getProperty("symmetric.algorithm"));
-            SecretKeySpec key = new SecretKeySpec(properties.getProperty("symmetric.key").getBytes(StandardCharsets.UTF_8), "AES");
+            byte[] decodedKey = Base64.getDecoder().decode(base64SessionKey);
+            SecretKeySpec key = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
             IvParameterSpec iv = new IvParameterSpec(properties.getProperty("symmetric.iv").getBytes(StandardCharsets.UTF_8));
             cipher.init(Cipher.DECRYPT_MODE, key, iv);
             byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(base64CipherText));
@@ -86,11 +100,29 @@ public class CryptoUtils {
         }
     }
 
+    // Overload for server-side usage (uses crypto.properties)
     public String asymmetricEncrypt(String certificateKeyStoreAlias, String plainText) {
-        try (InputStream fis = CryptoUtils.class.getClassLoader().getResourceAsStream(properties.getProperty("keystore.path"))) {
-            KeyStore keystore = KeyStore.getInstance(properties.getProperty("keystore.type"));
-            keystore.load(fis, properties.getProperty("keystore.password").toCharArray());
+        return asymmetricEncrypt(
+                certificateKeyStoreAlias,
+                plainText,
+                properties.getProperty("keystore.path"),
+                properties.getProperty("keystore.password"),
+                properties.getProperty("keystore.type")
+        );
+    }
+
+    // Main encryption method, now parameterized
+    public String asymmetricEncrypt(String certificateKeyStoreAlias, String plainText, String keystorePath, String keystorePassword, String keystoreType) {
+        try (InputStream fis = CryptoUtils.class.getClassLoader().getResourceAsStream(keystorePath)) {
+            if (fis == null) {
+                throw new IOException("Keystore file not found in classpath: " + keystorePath);
+            }
+            KeyStore keystore = KeyStore.getInstance(keystoreType);
+            keystore.load(fis, keystorePassword.toCharArray());
             Certificate certificate = keystore.getCertificate(certificateKeyStoreAlias);
+            if (certificate == null) {
+                throw new RuntimeException("Certificate alias not found in keystore: " + certificateKeyStoreAlias);
+            }
             Cipher cipher = Cipher.getInstance(properties.getProperty("asymmetric.algorithm"));
             cipher.init(Cipher.ENCRYPT_MODE, certificate.getPublicKey());
             byte[] cipherText = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
@@ -100,11 +132,29 @@ public class CryptoUtils {
         }
     }
 
+    // Overload for backward compatibility / default usage
     public String asymmetricDecrypt(String privateKeyStoreAlias, String base64CipherText) {
-        try (InputStream fis = CryptoUtils.class.getClassLoader().getResourceAsStream(properties.getProperty("keystore.path"))) {
-            KeyStore keystore = KeyStore.getInstance(properties.getProperty("keystore.type"));
-            keystore.load(fis, properties.getProperty("keystore.password").toCharArray());
-            Key key = keystore.getKey(privateKeyStoreAlias, properties.getProperty("keystore.password").toCharArray());
+        return asymmetricDecrypt(
+                privateKeyStoreAlias,
+                base64CipherText,
+                properties.getProperty("keystore.path"),
+                properties.getProperty("keystore.password"),
+                properties.getProperty("keystore.type")
+        );
+    }
+
+    // Main decryption method, now parameterized for client-side usage
+    public String asymmetricDecrypt(String privateKeyStoreAlias, String base64CipherText, String keystorePath, String keystorePassword, String keystoreType) {
+        try (InputStream fis = CryptoUtils.class.getClassLoader().getResourceAsStream(keystorePath)) {
+            if (fis == null) {
+                throw new IOException("Keystore file not found in classpath: " + keystorePath);
+            }
+            KeyStore keystore = KeyStore.getInstance(keystoreType);
+            keystore.load(fis, keystorePassword.toCharArray());
+            Key key = keystore.getKey(privateKeyStoreAlias, keystorePassword.toCharArray());
+            if (key == null) {
+                throw new RuntimeException("Private key alias not found in keystore: " + privateKeyStoreAlias);
+            }
             Cipher cipher = Cipher.getInstance(properties.getProperty("asymmetric.algorithm"));
             cipher.init(Cipher.DECRYPT_MODE, key);
             byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(base64CipherText));

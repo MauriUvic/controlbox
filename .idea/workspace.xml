@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="Backoffice version 3">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/cat/uvic/teknos/dam/controlbox/server/KeyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/src/main/java/cat/uvic/teknos/dam/controlbox/security/CryptoUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/src/main/java/cat/uvic/teknos/dam/controlbox/utilities/security/CryptoUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/src/main/resources/crypto.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/src/test/java/cat/uvic/teknos/dam/controlbox/security/CryptoUtilsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/src/test/java/cat/uvic/teknos/dam/controlbox/utilities/security/CryptoUtilsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="Backoffice version 4">
+      <change afterPath="$PROJECT_DIR$/generate_keystores.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/console/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/clients/console/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clients/console/src/main/java/cat/uvic/teknos/dam/controlbox/clients/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/clients/console/src/main/java/cat/uvic/teknos/dam/controlbox/clients/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/cat/uvic/teknos/dam/controlbox/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/cat/uvic/teknos/dam/controlbox/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/cat/uvic/teknos/dam/controlbox/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/cat/uvic/teknos/dam/controlbox/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/src/main/java/cat/uvic/teknos/dam/controlbox/security/CryptoUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/src/main/java/cat/uvic/teknos/dam/controlbox/security/CryptoUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/src/main/resources/crypto.properties" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/src/main/resources/crypto.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +118,8 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SHELLCHECK.PATH": "C:\\Users\\10059541\\AppData\\Roaming\\JetBrains\\IntelliJIdea2025.2\\plugins\\Shell Script\\shellcheck.exe",
+    "Shell Script.generate_keystores.sh.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "master",
@@ -244,30 +238,6 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="JdbcProductRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":jdbc:test" />
-            <option value="--tests" />
-            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcProductRepositoryTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="controlbox.model" />
       <method v="2">
@@ -279,13 +249,28 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
+    <configuration name="generate_keystores.sh" type="ShConfigurationType" temporary="true">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/generate_keystores.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Shell Script.generate_keystores.sh" />
         <item itemvalue="Application.Client" />
         <item itemvalue="Application.Server" />
         <item itemvalue="Gradle.JdbcOrderRepositoryTest" />
         <item itemvalue="Gradle.JdbcOrderRepositoryTest.testSaveAndGetOrder" />
-        <item itemvalue="Gradle.JdbcProductRepositoryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -361,7 +346,7 @@
       <workItem from="1762783486843" duration="1440000" />
       <workItem from="1765298886903" duration="582000" />
       <workItem from="1765300727616" duration="101000" />
-      <workItem from="1765300843520" duration="1941000" />
+      <workItem from="1765300843520" duration="6096000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial implementation of model classes and Gradle configuration">
       <option name="closed" value="true" />
@@ -475,7 +460,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762784155036</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Backoffice version 4">
+      <option name="closed" value="true" />
+      <created>1765302904500</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1765302904500</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,7 +484,8 @@
     <MESSAGE value="Database change" />
     <MESSAGE value="Backoffice version 2" />
     <MESSAGE value="Backoffice version 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Backoffice version 3" />
+    <MESSAGE value="Backoffice version 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Backoffice version 4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

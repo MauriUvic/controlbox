@@ -1,6 +1,6 @@
 package cat.uvic.teknos.dam.controlbox.server;
 
-import cat.uvic.teknos.dam.controlbox.utilities.security.CryptoUtils;
+import cat.uvic.teknos.dam.controlbox.security.CryptoUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +17,7 @@ public class ClientHandler implements Runnable {
     private final Map<String, Object> controllers;
     private final List<ClientHandler> connectedClients;
     private String sessionKey = null;
+    private final CryptoUtils cryptoUtils = new CryptoUtils();
 
     public ClientHandler(Socket clientSocket, Map<String, Object> controllers, List<ClientHandler> clients) {
         this.clientSocket = clientSocket;
@@ -74,7 +75,7 @@ public class ClientHandler implements Runnable {
                             body = new String(bodyChars);
 
                             String receivedHash = headers.get("X-Hash");
-                            String computedHash = CryptoUtils.hash(body);
+                            String computedHash = cryptoUtils.hash(body);
 
                             if (receivedHash == null || !receivedHash.equals(computedHash)) {
                                 out.print("HTTP/1.1 400 Bad Request\r\n\r\nInvalid hash");
@@ -83,7 +84,12 @@ public class ClientHandler implements Runnable {
                             }
 
                             if (headers.containsKey("X-Encrypted") && "true".equals(headers.get("X-Encrypted"))) {
-                                body = CryptoUtils.decrypt(body);
+                                if (sessionKey == null) {
+                                    out.print("HTTP/1.1 400 Bad Request\r\n\r\nEncrypted request received without a session key");
+                                    out.flush();
+                                    continue;
+                                }
+                                body = cryptoUtils.decrypt(body, sessionKey);
                             }
                         }
                     }
@@ -93,10 +99,11 @@ public class ClientHandler implements Runnable {
                         ProductController controller = (ProductController) controllers.get("/products");
                         response = controller.processRequest(method, path, body);
                     } else if (path.startsWith("/keys")) {
-                        KeyController controller = (KeyController) controllers.get("/keys");
-                        response = controller.processRequest(method, path);
+                        KeyController keyController = (KeyController) controllers.get("/keys");
+                        response = keyController.processRequest(method, path);
                         int bodyIndex = response.indexOf("\r\n\r\n");
                         if (bodyIndex != -1 && bodyIndex + 4 < response.length()) {
+                            // The session key is the body of the response from KeyController
                             sessionKey = response.substring(bodyIndex + 4);
                         }
                     } else {
@@ -113,14 +120,14 @@ public class ClientHandler implements Runnable {
                     String headersAndBody;
 
                     if (sessionKey != null && !path.startsWith("/keys")) {
-                        String encryptedBody = CryptoUtils.crypt(responseBody);
-                        String responseHash = CryptoUtils.hash(encryptedBody);
+                        String encryptedBody = cryptoUtils.crypt(responseBody, sessionKey);
+                        String responseHash = cryptoUtils.hash(encryptedBody);
                         headersAndBody = "X-Hash: " + responseHash + "\r\n" +
                                 "X-Encrypted: true\r\n" +
                                 "Content-Length: " + encryptedBody.length() + "\r\n\r\n" +
                                 encryptedBody;
                     } else {
-                        String responseHash = CryptoUtils.hash(responseBody);
+                        String responseHash = cryptoUtils.hash(responseBody);
                         headersAndBody = "X-Hash: " + responseHash + "\r\n" +
                                 "Content-Length: " + responseBody.length() + "\r\n\r\n" +
                                 responseBody;
