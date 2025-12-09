@@ -1,17 +1,24 @@
 package cat.uvic.teknos.dam.controlbox.clients;
 
-import cat.uvic.teknos.dam.controlbox.clients.exceptions.ClientException;
 import cat.uvic.teknos.dam.controlbox.clients.models.ProductImpl;
+import cat.uvic.teknos.dam.controlbox.utilities.security.CryptoUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import rawhttp.core.RawHttp;
 import rawhttp.core.RawHttpRequest;
 import rawhttp.core.RawHttpResponse;
 
-import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.io.SequenceInputStream;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Client {
@@ -21,6 +28,7 @@ public class Client {
     private static final ObjectMapper mapper = new ObjectMapper();
     private static final long INACTIVITY_TIMEOUT_MS = 2 * 60 * 1000; // 2 minutes
     private static final AtomicLong lastActivityTime = new AtomicLong(System.currentTimeMillis());
+    private static String sessionKey = null;
 
     public static void main(String[] args) {
         try (Socket socket = new Socket(HOST, PORT)) {
@@ -53,7 +61,6 @@ public class Client {
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 printMainMenu();
-                // We use a separate thread to read from System.in to avoid blocking the main loop
                 String choice = scanner.nextLine();
                 lastActivityTime.set(System.currentTimeMillis());
 
@@ -66,12 +73,17 @@ public class Client {
                     case "1":
                         manageProducts(socket, scanner);
                         break;
+                    case "2":
+                        System.out.print("Enter client number (e.g., 1 or 2): ");
+                        String clientNumber = scanner.nextLine();
+                        lastActivityTime.set(System.currentTimeMillis());
+                        requestSessionKey(socket, "client" + clientNumber);
+                        break;
                     default:
                         System.out.println("Invalid option. Please try again.");
                 }
             }
         } catch (Exception e) {
-            // This might happen if the main thread closes the socket
             System.out.println("Input handler finished.");
         }
     }
@@ -83,7 +95,7 @@ public class Client {
                             "Host: %s:%d\r\n\r\n", HOST, PORT));
             request.writeTo(socket.getOutputStream());
 
-            RawHttpResponse<?> response = rawHttp.parseResponse(socket.getInputStream()).eagerly();
+            RawHttpResponse<?> response = rawHttp.parseResponse(sanitizeResponseStream(socket.getInputStream())).eagerly();
             System.out.println("Server ACK: " + response.getStartLine().getReason());
         } catch (IOException e) {
             System.err.println("Error sending disconnect message: " + e.getMessage());
@@ -94,6 +106,7 @@ public class Client {
     private static void printMainMenu() {
         System.out.println("\n--- Client Terminal ---");
         System.out.println("1. Manage Products");
+        System.out.println("2. Request Session Key");
         System.out.println("Type 'exit' to quit.");
         System.out.print("Choose an option: ");
     }
@@ -146,6 +159,27 @@ public class Client {
         System.out.print("Choose an option: ");
     }
 
+    private static void requestSessionKey(Socket socket, String clientAlias) {
+        RawHttpRequest request = rawHttp.parseRequest(String.format(
+                "GET /keys/%s HTTP/1.1\r\n" +
+                        "User-Agent: console\r\n" +
+                        "Host: %s:%d\r\n" +
+                        "\r\n", clientAlias, HOST, PORT));
+        try {
+            request.writeTo(socket.getOutputStream());
+            socket.getOutputStream().flush();
+
+            RawHttpResponse<?> response = rawHttp.parseResponse(sanitizeResponseStream(socket.getInputStream())).eagerly();
+            if (response.getBody().isPresent()) {
+                String encryptedKey = response.getBody().get().toString();
+                sessionKey = CryptoUtils.asymmetricDecrypt(clientAlias, encryptedKey);
+                System.out.println("Session key successfully received and decrypted.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error requesting session key: " + e.getMessage());
+        }
+    }
+
     private static void sendGetRequest(Socket socket, String path) {
         RawHttpRequest request = rawHttp.parseRequest(String.format(
                 "GET %s HTTP/1.1\r\n" +
@@ -166,14 +200,25 @@ public class Client {
             return;
         }
 
+        String body = productJson;
+        String headers = "";
+        if (sessionKey != null) {
+            body = CryptoUtils.crypt(productJson);
+            headers += "X-Encrypted: true\r\n";
+        }
+        String hash = CryptoUtils.hash(body);
+        headers += "X-Hash: " + hash + "\r\n";
+
+
         RawHttpRequest request = rawHttp.parseRequest(String.format(
                 "POST /products HTTP/1.1\r\n" +
                         "User-Agent: console\r\n" +
                         "Host: %s:%d\r\n" +
                         "Content-Type: application/json\r\n" +
                         "Content-Length: %d\r\n" +
+                        "%s" +
                         "\r\n" +
-                        "%s", HOST, PORT, productJson.length(), productJson));
+                        "%s", HOST, PORT, body.length(), headers, body));
 
         sendRequestAndPrintResponse(socket, request, false);
     }
@@ -194,14 +239,24 @@ public class Client {
                 return;
             }
 
+            String body = productJson;
+            String headers = "";
+            if (sessionKey != null) {
+                body = CryptoUtils.crypt(productJson);
+                headers += "X-Encrypted: true\r\n";
+            }
+            String hash = CryptoUtils.hash(body);
+            headers += "X-Hash: " + hash + "\r\n";
+
             RawHttpRequest request = rawHttp.parseRequest(String.format(
                     "PUT /products/%d HTTP/1.1\r\n" +
                             "User-Agent: console\r\n" +
                             "Host: %s:%d\r\n" +
                             "Content-Type: application/json\r\n" +
                             "Content-Length: %d\r\n" +
+                            "%s" +
                             "\r\n" +
-                            "%s", id, HOST, PORT, productJson.length(), productJson));
+                            "%s", id, HOST, PORT, body.length(), headers, body));
 
             sendRequestAndPrintResponse(socket, request, false);
         } catch (NumberFormatException e) {
@@ -249,13 +304,28 @@ public class Client {
             request.writeTo(socket.getOutputStream());
             socket.getOutputStream().flush();
 
-            RawHttpResponse<?> response = rawHttp.parseResponse(socket.getInputStream()).eagerly();
+            RawHttpResponse<?> response = rawHttp.parseResponse(sanitizeResponseStream(socket.getInputStream())).eagerly();
 
             System.out.println("\n--- Server Response ---");
             System.out.println("Status: " + response.getStartLine().getStatusCode() + " " + response.getStartLine().getReason());
 
             if (response.getBody().isPresent()) {
-                String json = response.getBody().get().toString();
+                String body = response.getBody().get().toString();
+
+                String receivedHash = response.getHeaders().getFirst("X-Hash").orElse(null);
+                String computedHash = CryptoUtils.hash(body);
+
+                if (receivedHash != null && !receivedHash.equals(computedHash)) {
+                    System.err.println("Error: Response hash does not match!");
+                    return;
+                }
+
+                String json = body;
+                if (response.getHeaders().getFirst("X-Encrypted").orElse("false").equals("true")) {
+                    json = CryptoUtils.decrypt(body);
+                }
+
+
                 if (isGetAllProducts) {
                     ProductImpl[] products = mapper.readValue(json, ProductImpl[].class);
                     System.out.println("\n--- All Products ---");
@@ -285,5 +355,67 @@ public class Client {
             System.err.println("An unexpected error occurred while processing response: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Read response header bytes from the input stream, remove duplicate Content-Length headers
+     * (keep the first occurrence) and return a new InputStream that yields the sanitized headers
+     * followed by the remaining bytes from the original stream (the response body).
+     */
+    private static InputStream sanitizeResponseStream(InputStream in) throws IOException {
+        ByteArrayOutputStream headerBuf = new ByteArrayOutputStream();
+        int b;
+        // Read until we encounter CRLF CRLF (\r\n\r\n)
+        while ((b = in.read()) != -1) {
+            headerBuf.write(b);
+            byte[] bytes = headerBuf.toByteArray();
+            int len = bytes.length;
+            if (len >= 4 && bytes[len - 4] == '\r' && bytes[len - 3] == '\n' && bytes[len - 2] == '\r' && bytes[len - 1] == '\n') {
+                break;
+            }
+        }
+
+        if (headerBuf.size() == 0) {
+            // Nothing read: return original stream
+            return in;
+        }
+
+        String headerStr = headerBuf.toString(StandardCharsets.ISO_8859_1.name());
+        String[] lines = headerStr.split("\r\n");
+        if (lines.length == 0) {
+            return new SequenceInputStream(new ByteArrayInputStream(headerBuf.toByteArray()), in);
+        }
+
+        String startLine = lines[0];
+        List<String> keptHeaders = new ArrayList<>();
+        boolean firstContentLengthSeen = false;
+        for (int i = 1; i < lines.length; i++) {
+            String line = lines[i];
+            if (line == null || line.isEmpty()) continue;
+            int idx = line.indexOf(':');
+            if (idx > 0) {
+                String name = line.substring(0, idx).trim();
+                if ("content-length".equalsIgnoreCase(name)) {
+                    if (!firstContentLengthSeen) {
+                        keptHeaders.add(line);
+                        firstContentLengthSeen = true;
+                    } else {
+                        // skip duplicate content-length header
+                    }
+                } else {
+                    keptHeaders.add(line);
+                }
+            } else {
+                keptHeaders.add(line);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(startLine).append("\r\n");
+        for (String h : keptHeaders) sb.append(h).append("\r\n");
+        sb.append("\r\n");
+
+        byte[] sanitizedHeaderBytes = sb.toString().getBytes(StandardCharsets.ISO_8859_1);
+        return new SequenceInputStream(new ByteArrayInputStream(sanitizedHeaderBytes), in);
     }
 }

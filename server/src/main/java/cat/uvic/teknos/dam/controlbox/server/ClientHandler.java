@@ -1,5 +1,7 @@
 package cat.uvic.teknos.dam.controlbox.server;
 
+import cat.uvic.teknos.dam.controlbox.utilities.security.CryptoUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,12 +14,13 @@ import java.util.Map;
 
 public class ClientHandler implements Runnable {
     private final Socket clientSocket;
-    private final ProductController productController;
+    private final Map<String, Object> controllers;
     private final List<ClientHandler> connectedClients;
+    private String sessionKey = null;
 
-    public ClientHandler(Socket clientSocket, ProductController productController, List<ClientHandler> clients) {
+    public ClientHandler(Socket clientSocket, Map<String, Object> controllers, List<ClientHandler> clients) {
         this.clientSocket = clientSocket;
-        this.productController = productController;
+        this.controllers = controllers;
         this.connectedClients = clients;
     }
 
@@ -69,11 +72,62 @@ public class ClientHandler implements Runnable {
                             char[] bodyChars = new char[contentLength];
                             in.read(bodyChars, 0, contentLength);
                             body = new String(bodyChars);
+
+                            String receivedHash = headers.get("X-Hash");
+                            String computedHash = CryptoUtils.hash(body);
+
+                            if (receivedHash == null || !receivedHash.equals(computedHash)) {
+                                out.print("HTTP/1.1 400 Bad Request\r\n\r\nInvalid hash");
+                                out.flush();
+                                continue;
+                            }
+
+                            if (headers.containsKey("X-Encrypted") && "true".equals(headers.get("X-Encrypted"))) {
+                                body = CryptoUtils.decrypt(body);
+                            }
                         }
                     }
 
-                    String response = productController.processRequest(method, path, body);
-                    out.print(response);
+                    String response;
+                    if (path.startsWith("/products")) {
+                        ProductController controller = (ProductController) controllers.get("/products");
+                        response = controller.processRequest(method, path, body);
+                    } else if (path.startsWith("/keys")) {
+                        KeyController controller = (KeyController) controllers.get("/keys");
+                        response = controller.processRequest(method, path);
+                        int bodyIndex = response.indexOf("\r\n\r\n");
+                        if (bodyIndex != -1 && bodyIndex + 4 < response.length()) {
+                            sessionKey = response.substring(bodyIndex + 4);
+                        }
+                    } else {
+                        response = "HTTP/1.1 404 Not Found\r\n\r\n";
+                    }
+
+
+                    String responseBody = "";
+                    int bodyIndex = response.indexOf("\r\n\r\n");
+                    if (bodyIndex != -1 && bodyIndex + 4 < response.length()) {
+                        responseBody = response.substring(bodyIndex + 4);
+                    }
+
+                    String headersAndBody;
+
+                    if (sessionKey != null && !path.startsWith("/keys")) {
+                        String encryptedBody = CryptoUtils.crypt(responseBody);
+                        String responseHash = CryptoUtils.hash(encryptedBody);
+                        headersAndBody = "X-Hash: " + responseHash + "\r\n" +
+                                "X-Encrypted: true\r\n" +
+                                "Content-Length: " + encryptedBody.length() + "\r\n\r\n" +
+                                encryptedBody;
+                    } else {
+                        String responseHash = CryptoUtils.hash(responseBody);
+                        headersAndBody = "X-Hash: " + responseHash + "\r\n" +
+                                "Content-Length: " + responseBody.length() + "\r\n\r\n" +
+                                responseBody;
+                    }
+
+
+                    out.print(response.substring(0, response.indexOf("\r\n\r\n")) + "\r\n" + headersAndBody);
                     out.flush();
                     System.out.println("Server: Response sent.");
 

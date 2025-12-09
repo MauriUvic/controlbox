@@ -10,7 +10,8 @@ dependencies {
     implementation(project(":jdbc"))
     implementation(project(":model"))
     implementation(project(":repositories"))
-
+    implementation(project(":utilities"))
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
     implementation("com.mysql:mysql-connector-j:9.3.0")
     implementation("com.athaydes.rawhttp:rawhttp-core:2.6.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.20.0")

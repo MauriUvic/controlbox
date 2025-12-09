@@ -8,7 +8,11 @@ plugins {
 
 dependencies {
     implementation(project(":model"))
+    implementation(project(":utilities"))
     implementation("com.github.freva:ascii-table:1.8.0")
     implementation("com.athaydes.rawhttp:rawhttp-core:2.6.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.20.0")
+    // Add annotation API so libraries that use @Nullable compile in the IDE/source lookup
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
+
 }

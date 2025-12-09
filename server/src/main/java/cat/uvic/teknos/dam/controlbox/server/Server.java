@@ -7,7 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,6 +23,12 @@ public class Server {
         JdbcProductRepository productRepository = new JdbcProductRepository(new SingleConnectionDataSource());
         ObjectMapper mapper = new ObjectMapper();
         ProductController productController = new ProductController(productRepository, mapper);
+        KeyController keyController = new KeyController();
+
+        Map<String, Object> controllers = new HashMap<>();
+        controllers.put("/products", productController);
+        controllers.put("/keys", keyController);
+
 
         startClientCountReporter();
 
@@ -32,7 +40,7 @@ public class Server {
                     Socket clientSocket = serverSocket.accept();
                     System.out.println("Server: Client connected from " + clientSocket.getInetAddress());
 
-                    ClientHandler clientHandler = new ClientHandler(clientSocket, productController, connectedClients);
+                    ClientHandler clientHandler = new ClientHandler(clientSocket, controllers, connectedClients);
                     connectedClients.add(clientHandler);
 
                     executorService.submit(clientHandler);
