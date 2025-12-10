@@ -100,41 +100,58 @@ public class ClientHandler implements Runnable {
                         response = controller.processRequest(method, path, body);
                     } else if (path.startsWith("/keys")) {
                         KeyController keyController = (KeyController) controllers.get("/keys");
-                        response = keyController.processRequest(method, path);
-                        int bodyIndex = response.indexOf("\r\n\r\n");
-                        if (bodyIndex != -1 && bodyIndex + 4 < response.length()) {
-                            // The session key is the body of the response from KeyController
-                            sessionKey = response.substring(bodyIndex + 4);
-                        }
+                        KeyResponse keyResponse = keyController.processRequest(method, path);
+                        response = keyResponse.httpResponse;
+                        sessionKey = keyResponse.sessionKey;
                     } else {
                         response = "HTTP/1.1 404 Not Found\r\n\r\n";
                     }
 
-
                     String responseBody = "";
                     int bodyIndex = response.indexOf("\r\n\r\n");
-                    if (bodyIndex != -1 && bodyIndex + 4 < response.length()) {
+                    if (bodyIndex != -1 && bodyIndex + 4 <= response.length()) {
                         responseBody = response.substring(bodyIndex + 4);
                     }
 
-                    String headersAndBody;
+                    String statusLine = response.substring(0, response.indexOf("\r\n"));
 
-                    if (sessionKey != null && !path.startsWith("/keys")) {
+                    // Extract original headers, but filter out Content-Length
+                    String originalHeadersString = "";
+                    if (response.indexOf("\r\n") + 2 < bodyIndex) {
+                        originalHeadersString = response.substring(response.indexOf("\r\n") + 2, bodyIndex);
+                    }
+                    
+                    String[] headersArray = originalHeadersString.split("\r\n");
+                    StringBuilder headersToKeep = new StringBuilder();
+                    for (String header : headersArray) {
+                        if (!header.trim().toLowerCase().startsWith("content-length:")) {
+                            headersToKeep.append(header).append("\r\n");
+                        }
+                    }
+
+                    String finalResponse;
+                    if (sessionKey != null && !path.startsWith("/keys") && !responseBody.isEmpty()) {
+                        // Encrypt the body for relevant responses
                         String encryptedBody = cryptoUtils.crypt(responseBody, sessionKey);
                         String responseHash = cryptoUtils.hash(encryptedBody);
-                        headersAndBody = "X-Hash: " + responseHash + "\r\n" +
+
+                        finalResponse = statusLine + "\r\n" +
+                                headersToKeep.toString() +
+                                "X-Hash: " + responseHash + "\r\n" +
                                 "X-Encrypted: true\r\n" +
                                 "Content-Length: " + encryptedBody.length() + "\r\n\r\n" +
                                 encryptedBody;
                     } else {
+                        // For /keys or unencrypted responses, just add hash and correct content length
                         String responseHash = cryptoUtils.hash(responseBody);
-                        headersAndBody = "X-Hash: " + responseHash + "\r\n" +
+                        finalResponse = statusLine + "\r\n" +
+                                headersToKeep.toString() +
+                                "X-Hash: " + responseHash + "\r\n" +
                                 "Content-Length: " + responseBody.length() + "\r\n\r\n" +
                                 responseBody;
                     }
 
-
-                    out.print(response.substring(0, response.indexOf("\r\n\r\n")) + "\r\n" + headersAndBody);
+                    out.print(finalResponse);
                     out.flush();
                     System.out.println("Server: Response sent.");
 

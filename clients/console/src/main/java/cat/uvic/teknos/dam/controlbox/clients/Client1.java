@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class Client {
+public class Client1 {
     private static final RawHttp rawHttp = new RawHttp();
     private static final String HOST = "localhost";
     private static final int PORT = 5000;
@@ -31,11 +31,7 @@ public class Client {
 
 
     public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("Usage: java Client <client-alias>");
-            return;
-        }
-        String clientAlias = args[0];
+        String clientAlias = "client1";
 
         try (Socket socket = new Socket(HOST, PORT)) {
             System.out.println("Connected to server at " + HOST + ":" + PORT + " as " + clientAlias);
@@ -174,8 +170,7 @@ public class Client {
             if (response.getBody().isPresent()) {
                 String encryptedKey = response.getBody().get().toString();
 
-                // Use the new parameterized decrypt method
-                String keystorePath = clientAlias + ".p12"; // e.g., "client1.p12"
+                String keystorePath = clientAlias + ".p12";
                 String keystorePassword = "password";
                 String keystoreType = "PKCS12";
 
@@ -191,7 +186,6 @@ public class Client {
     private static void sendGetRequest(Socket socket, String path) {
         String headers = "";
         if (sessionKey != null) {
-            // For GET requests, we don't have a body to encrypt, but we need to signal encryption context
             headers += "X-Encrypted: true\r\n";
         }
 
@@ -199,7 +193,7 @@ public class Client {
                 "GET %s HTTP/1.1\r\n" +
                         "User-Agent: console\r\n" +
                         "Host: %s:%d\r\n" +
-                        "%s" + // Additional headers
+                        "%s" +
                         "\r\n", path, HOST, PORT, headers));
 
         sendRequestAndPrintResponse(socket, request, path.equals("/products"));
@@ -376,15 +370,9 @@ public class Client {
         }
     }
 
-    /**
-     * Read response header bytes from the input stream, remove duplicate Content-Length headers
-     * (keep the first occurrence) and return a new InputStream that yields the sanitized headers
-     * followed by the remaining bytes from the original stream (the response body).
-     */
     private static InputStream sanitizeResponseStream(InputStream in) throws IOException {
         ByteArrayOutputStream headerBuf = new ByteArrayOutputStream();
         int b;
-        // Read until we encounter CRLF CRLF (\r\n\r\n)
         while ((b = in.read()) != -1) {
             headerBuf.write(b);
             byte[] bytes = headerBuf.toByteArray();
@@ -395,7 +383,6 @@ public class Client {
         }
 
         if (headerBuf.size() == 0) {
-            // Nothing read: return original stream
             return in;
         }
 
@@ -418,8 +405,6 @@ public class Client {
                     if (!firstContentLengthSeen) {
                         keptHeaders.add(line);
                         firstContentLengthSeen = true;
-                    } else {
-                        // skip duplicate content-length header
                     }
                 } else {
                     keptHeaders.add(line);

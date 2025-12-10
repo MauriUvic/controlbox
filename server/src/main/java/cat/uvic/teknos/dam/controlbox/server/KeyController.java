@@ -7,11 +7,21 @@ import javax.crypto.SecretKey;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
+class KeyResponse {
+    String httpResponse;
+    String sessionKey;
+
+    public KeyResponse(String httpResponse, String sessionKey) {
+        this.httpResponse = httpResponse;
+        this.sessionKey = sessionKey;
+    }
+}
+
 public class KeyController {
 
     private final CryptoUtils cryptoUtils = new CryptoUtils();
 
-    public String processRequest(String method, String path) {
+    public KeyResponse processRequest(String method, String path) {
         if ("GET".equalsIgnoreCase(method) && path.startsWith("/keys/")) {
             String clientAlias = path.substring("/keys/".length());
             try {
@@ -22,15 +32,17 @@ public class KeyController {
 
                 String encryptedKey = cryptoUtils.asymmetricEncrypt(clientAlias, encodedKey);
 
-                return "HTTP/1.1 200 OK\r\n" +
+                String httpResponse = "HTTP/1.1 200 OK\r\n" +
                         "Content-Type: text/plain\r\n" +
                         "Content-Length: " + encryptedKey.length() + "\r\n" +
                         "\r\n" +
                         encryptedKey;
+
+                return new KeyResponse(httpResponse, encodedKey);
             } catch (NoSuchAlgorithmException e) {
                 throw new RuntimeException(e);
             }
         }
-        return "HTTP/1.1 404 Not Found\r\n\r\n";
+        return new KeyResponse("HTTP/1.1 404 Not Found\r\n\r\n", null);
     }
 }

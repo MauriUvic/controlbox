@@ -60,19 +60,22 @@ public class CryptoUtils {
         return hexString.toString();
     }
 
-    // Overload for non-session-based encryption
     public String crypt(String plainText) {
         return crypt(plainText, properties.getProperty("symmetric.key"));
     }
 
-    // Main symmetric encryption method using a specific key
     public String crypt(String plainText, String base64SessionKey) {
         try {
             Cipher cipher = Cipher.getInstance(properties.getProperty("symmetric.algorithm"));
             byte[] decodedKey = Base64.getDecoder().decode(base64SessionKey);
             SecretKeySpec key = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
-            IvParameterSpec iv = new IvParameterSpec(properties.getProperty("symmetric.iv").getBytes(StandardCharsets.UTF_8));
-            cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+
+            byte[] ivBytesFromProperties = properties.getProperty("symmetric.iv").getBytes(StandardCharsets.UTF_8);
+            byte[] iv = new byte[16];
+            System.arraycopy(ivBytesFromProperties, 0, iv, 0, Math.min(ivBytesFromProperties.length, 16));
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+
+            cipher.init(Cipher.ENCRYPT_MODE, key, ivParameterSpec);
             byte[] cipherText = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
             return Base64.getEncoder().encodeToString(cipherText);
         } catch (Exception e) {
@@ -80,19 +83,22 @@ public class CryptoUtils {
         }
     }
 
-    // Overload for non-session-based decryption
     public String decrypt(String base64CipherText) {
         return decrypt(base64CipherText, properties.getProperty("symmetric.key"));
     }
 
-    // Main symmetric decryption method using a specific key
     public String decrypt(String base64CipherText, String base64SessionKey) {
         try {
             Cipher cipher = Cipher.getInstance(properties.getProperty("symmetric.algorithm"));
             byte[] decodedKey = Base64.getDecoder().decode(base64SessionKey);
             SecretKeySpec key = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
-            IvParameterSpec iv = new IvParameterSpec(properties.getProperty("symmetric.iv").getBytes(StandardCharsets.UTF_8));
-            cipher.init(Cipher.DECRYPT_MODE, key, iv);
+
+            byte[] ivBytesFromProperties = properties.getProperty("symmetric.iv").getBytes(StandardCharsets.UTF_8);
+            byte[] iv = new byte[16];
+            System.arraycopy(ivBytesFromProperties, 0, iv, 0, Math.min(ivBytesFromProperties.length, 16));
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+
+            cipher.init(Cipher.DECRYPT_MODE, key, ivParameterSpec);
             byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(base64CipherText));
             return new String(plainText);
         } catch (Exception e) {
@@ -100,7 +106,6 @@ public class CryptoUtils {
         }
     }
 
-    // Overload for server-side usage (uses crypto.properties)
     public String asymmetricEncrypt(String certificateKeyStoreAlias, String plainText) {
         return asymmetricEncrypt(
                 certificateKeyStoreAlias,
@@ -111,7 +116,6 @@ public class CryptoUtils {
         );
     }
 
-    // Main encryption method, now parameterized
     public String asymmetricEncrypt(String certificateKeyStoreAlias, String plainText, String keystorePath, String keystorePassword, String keystoreType) {
         try (InputStream fis = CryptoUtils.class.getClassLoader().getResourceAsStream(keystorePath)) {
             if (fis == null) {
@@ -132,7 +136,6 @@ public class CryptoUtils {
         }
     }
 
-    // Overload for backward compatibility / default usage
     public String asymmetricDecrypt(String privateKeyStoreAlias, String base64CipherText) {
         return asymmetricDecrypt(
                 privateKeyStoreAlias,
@@ -143,7 +146,6 @@ public class CryptoUtils {
         );
     }
 
-    // Main decryption method, now parameterized for client-side usage
     public String asymmetricDecrypt(String privateKeyStoreAlias, String base64CipherText, String keystorePath, String keystorePassword, String keystoreType) {
         try (InputStream fis = CryptoUtils.class.getClassLoader().getResourceAsStream(keystorePath)) {
             if (fis == null) {
