@@ -24,9 +24,29 @@ public class Client {
     private static final String HOST = "localhost";
     private static final int PORT = 5000;
     private static final ObjectMapper mapper = new ObjectMapper();
-    private static final long INACTIVITY_TIMEOUT_MS = 2 * 60 * 1000; // 2 minutes
+
+    /**
+     * Temps màxim d'inactivitat (2 minuts) abans que el client es desconnecti automàticament.
+     * Aquesta mesura ajuda a alliberar recursos del servidor.
+     */
+    private static final long INACTIVITY_TIMEOUT_MS = 2 * 60 * 1000;
+
+    /**
+     * Registra l'últim moment en què el client va realitzar una activitat.
+     * S'utilitza per detectar la inactivitat i desconnectar el client si excedeix el temps límit.
+     */
     private static final AtomicLong lastActivityTime = new AtomicLong(System.currentTimeMillis());
+
+    /**
+     * Clau de sessió simètrica utilitzada per xifrar i desxifrar la comunicació amb el servidor.
+     * S'estableix després d'un intercanvi de claus asimètric inicial.
+     */
     private static String sessionKey = null;
+
+    /**
+     * Utilitat per a operacions criptogràfiques com el xifrat asimètric, simètric i hashing.
+     * Garanteix la confidencialitat i la integritat de les dades.
+     */
     private static final CryptoUtils cryptoUtils = new CryptoUtils();
 
 
@@ -37,15 +57,22 @@ public class Client {
         }
         String clientAlias = args[0];
 
+        /**
+         * Estableix una connexió amb el servidor i gestiona la interacció amb l'usuari.
+         * Inclou la lògica per a la desconnexió per inactivitat.
+         */
         try (Socket socket = new Socket(HOST, PORT)) {
             System.out.println("Connected to server at " + HOST + ":" + PORT + " as " + clientAlias);
 
+            // Sol·licita una clau de sessió al servidor per establir una comunicació segura.
             requestSessionKey(socket, clientAlias);
 
+            // Inicia un fil separat per gestionar l'entrada de l'usuari de forma no bloquejant.
             Thread inputThread = new Thread(() -> handleUserInput(socket));
             inputThread.setDaemon(true);
             inputThread.start();
 
+            // Bucle principal que monitoritza l'activitat de l'usuari i la desconnexió per inactivitat.
             while (inputThread.isAlive()) {
                 long inactivityDuration = System.currentTimeMillis() - lastActivityTime.get();
                 if (inactivityDuration > INACTIVITY_TIMEOUT_MS) {
@@ -65,6 +92,10 @@ public class Client {
         System.out.println("Client disconnected.");
     }
 
+    /**
+     * Processa les ordres introduïdes per l'usuari des de la consola.
+     * Permet navegar pels menús i realitzar operacions amb productes.
+     */
     private static void handleUserInput(Socket socket) {
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
@@ -90,6 +121,10 @@ public class Client {
         }
     }
 
+    /**
+     * Envia un missatge de desconnexió al servidor.
+     * Informa al servidor que el client tanca la sessió.
+     */
     private static void sendDisconnectMessage(Socket socket) {
         try {
             RawHttpRequest request = rawHttp.parseRequest(String.format(
@@ -112,6 +147,10 @@ public class Client {
         System.out.print("Choose an option: ");
     }
 
+    /**
+     * Permet a l'usuari realitzar operacions CRUD (Crear, Llegir, Actualitzar, Esborrar) sobre productes.
+     * Interactua amb el servidor per gestionar la base de dades de productes.
+     */
     private static void manageProducts(Socket socket, Scanner scanner) {
         String productChoice;
         while (true) {
@@ -160,6 +199,10 @@ public class Client {
         System.out.print("Choose an option: ");
     }
 
+    /**
+     * Sol·licita una clau de sessió al servidor mitjançant un intercanvi de claus asimètric.
+     * El client envia el seu àlies i el servidor retorna una clau de sessió xifrada amb la clau pública del client.
+     */
     private static void requestSessionKey(Socket socket, String clientAlias) {
         RawHttpRequest request = rawHttp.parseRequest(String.format(
                 "GET /keys/%s HTTP/1.1\r\n" +
@@ -179,6 +222,7 @@ public class Client {
                 String keystorePassword = "password";
                 String keystoreType = "PKCS12";
 
+                // Desxifra la clau de sessió rebuda utilitzant la clau privada del client.
                 sessionKey = cryptoUtils.asymmetricDecrypt(clientAlias, encryptedKey, keystorePath, keystorePassword, keystoreType);
                 System.out.println("Session key successfully received and decrypted.");
             }
@@ -188,6 +232,10 @@ public class Client {
         }
     }
 
+    /**
+     * Envia una petició GET al servidor per obtenir dades.
+     * Si hi ha una clau de sessió, afegeix una capçalera per indicar que la resposta pot estar xifrada.
+     */
     private static void sendGetRequest(Socket socket, String path) {
         String headers = "";
         if (sessionKey != null) {
@@ -205,6 +253,10 @@ public class Client {
         sendRequestAndPrintResponse(socket, request, path.equals("/products"));
     }
 
+    /**
+     * Crea un nou producte enviant una petició POST al servidor.
+     * El cos de la petició (dades del producte) es xifra amb la clau de sessió i s'afegeix un hash per integritat.
+     */
     private static void createProduct(Socket socket, Scanner scanner) {
         ProductImpl newProduct = getProductDetailsFromUser(scanner, false);
         String productJson = null;
@@ -218,11 +270,11 @@ public class Client {
         String body = productJson;
         String headers = "";
         if (sessionKey != null) {
-            body = cryptoUtils.crypt(productJson, sessionKey);
+            body = cryptoUtils.crypt(productJson, sessionKey); // Xifra el cos de la petició.
             headers += "X-Encrypted: true\r\n";
         }
-        String hash = cryptoUtils.hash(body);
-        headers += "X-Hash: " + hash + "\r\n";
+        String hash = cryptoUtils.hash(body); // Calcula el hash del cos xifrat.
+        headers += "X-Hash: " + hash + "\r\n"; // Afegeix el hash a les capçaleres.
 
 
         RawHttpRequest request = rawHttp.parseRequest(String.format(
@@ -238,6 +290,10 @@ public class Client {
         sendRequestAndPrintResponse(socket, request, false);
     }
 
+    /**
+     * Actualitza un producte existent enviant una petició PUT al servidor.
+     * Similar a `createProduct`, el cos es xifra i s'afegeix un hash.
+     */
     private static void updateProduct(Socket socket, Scanner scanner) {
         System.out.print("Enter product ID to update: ");
         String idStr = scanner.nextLine();
@@ -279,6 +335,10 @@ public class Client {
         }
     }
 
+    /**
+     * Elimina un producte enviant una petició DELETE al servidor.
+     * No requereix xifrat del cos, ja que la informació principal és a la URL.
+     */
     private static void deleteProduct(Socket socket, Scanner scanner) {
         System.out.print("Enter product ID to delete: ");
         String idStr = scanner.nextLine();
@@ -297,6 +357,10 @@ public class Client {
         }
     }
 
+    /**
+     * Recull les dades d'un producte de l'usuari a través de la consola.
+     * S'utilitza tant per crear com per actualitzar productes.
+     */
     private static ProductImpl getProductDetailsFromUser(Scanner scanner, boolean isUpdate) {
         ProductImpl product = new ProductImpl();
         System.out.print("Enter product name: ");
@@ -314,6 +378,10 @@ public class Client {
         return product;
     }
 
+    /**
+     * Envia una petició HTTP al servidor i processa la resposta.
+     * Gestiona el desxifrat de la resposta i la verificació del hash per assegurar la integritat.
+     */
     private static void sendRequestAndPrintResponse(Socket socket, RawHttpRequest request, boolean isGetAllProducts) {
         try {
             request.writeTo(socket.getOutputStream());
@@ -330,12 +398,14 @@ public class Client {
                 String receivedHash = response.getHeaders().getFirst("X-Hash").orElse(null);
                 String computedHash = cryptoUtils.hash(body);
 
+                // Verifica la integritat de la resposta comparant el hash rebut amb el calculat.
                 if (receivedHash != null && !receivedHash.equals(computedHash)) {
                     System.err.println("Error: Response hash does not match!");
                     return;
                 }
 
                 String json = body;
+                // Desxifra el cos de la resposta si la capçalera "X-Encrypted" és present i la clau de sessió està disponible.
                 if (response.getHeaders().getFirst("X-Encrypted").orElse("false").equals("true")) {
                     if (sessionKey == null) {
                         System.err.println("Error: Encrypted response received but no session key is available.");
@@ -377,9 +447,8 @@ public class Client {
     }
 
     /**
-     * Read response header bytes from the input stream, remove duplicate Content-Length headers
-     * (keep the first occurrence) and return a new InputStream that yields the sanitized headers
-     * followed by the remaining bytes from the original stream (the response body).
+     * Llegeix les capçaleres de la resposta HTTP i elimina capçaleres duplicades de "Content-Length".
+     * Retorna un nou InputStream amb les capçaleres sanejades i el cos de la resposta.
      */
     private static InputStream sanitizeResponseStream(InputStream in) throws IOException {
         ByteArrayOutputStream headerBuf = new ByteArrayOutputStream();

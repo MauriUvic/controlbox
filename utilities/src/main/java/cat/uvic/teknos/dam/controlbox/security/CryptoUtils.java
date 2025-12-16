@@ -13,10 +13,18 @@ import java.security.cert.Certificate;
 import java.util.Base64;
 import java.util.Properties;
 
+/**
+ * Classe d'utilitat per a operacions criptogràfiques.
+ * Proporciona mètodes per a hashing, xifrat/desxifrat simètric i asimètric.
+ */
 public class CryptoUtils {
 
     private static final Properties properties = new Properties();
 
+    /**
+     * Bloc estàtic per carregar les propietats de configuració criptogràfica.
+     * Llegeix el fitxer 'crypto.properties' per obtenir algorismes, claus i altres paràmetres.
+     */
     static {
         try (InputStream input = CryptoUtils.class.getClassLoader().getResourceAsStream("crypto.properties")) {
             if (input == null) {
@@ -28,6 +36,10 @@ public class CryptoUtils {
         }
     }
 
+    /**
+     * Calcula el hash d'un array de bytes utilitzant l'algorisme i el salt especificats a les propietats.
+     * El salt s'afegeix per protegir contra atacs de taules precalculades (rainbow tables).
+     */
     public String hash(byte[] bytes) {
         String algorithm = properties.getProperty("hash.algorithm");
         String salt = properties.getProperty("hash.salt");
@@ -41,6 +53,10 @@ public class CryptoUtils {
         }
     }
 
+    /**
+     * Mètode de conveniència per calcular el hash d'una cadena de text.
+     * Converteix la cadena a bytes i crida al mètode hash principal.
+     */
     public String hash(String plainText) {
         if (plainText == null) {
             return null;
@@ -48,6 +64,10 @@ public class CryptoUtils {
         return hash(plainText.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * Converteix un array de bytes a la seva representació hexadecimal.
+     * S'utilitza per obtenir una cadena llegible del hash binari.
+     */
     private String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (byte b : hash) {
@@ -60,10 +80,18 @@ public class CryptoUtils {
         return hexString.toString();
     }
 
+    /**
+     * Xifra un text pla utilitzant una clau simètrica per defecte de les propietats.
+     * És un mètode de conveniència per a casos d'ús simples.
+     */
     public String crypt(String plainText) {
         return crypt(plainText, properties.getProperty("symmetric.key"));
     }
 
+    /**
+     * Xifra un text pla utilitzant una clau de sessió simètrica (AES).
+     * Utilitza un vector d'inicialització (IV) per garantir que el mateix text no generi el mateix xifrat.
+     */
     public String crypt(String plainText, String base64SessionKey) {
         try {
             Cipher cipher = Cipher.getInstance(properties.getProperty("symmetric.algorithm"));
@@ -83,10 +111,18 @@ public class CryptoUtils {
         }
     }
 
+    /**
+     * Desxifra un text xifrat utilitzant una clau simètrica per defecte de les propietats.
+     * És un mètode de conveniència.
+     */
     public String decrypt(String base64CipherText) {
         return decrypt(base64CipherText, properties.getProperty("symmetric.key"));
     }
 
+    /**
+     * Desxifra un text xifrat amb Base64 utilitzant una clau de sessió simètrica (AES).
+     * Requereix la mateixa clau i IV que es van utilitzar per al xifrat.
+     */
     public String decrypt(String base64CipherText, String base64SessionKey) {
         try {
             Cipher cipher = Cipher.getInstance(properties.getProperty("symmetric.algorithm"));
@@ -106,6 +142,10 @@ public class CryptoUtils {
         }
     }
 
+    /**
+     * Xifra un text pla utilitzant la clau pública d'un certificat emmagatzemat en un KeyStore.
+     * Mètode de conveniència que utilitza la configuració per defecte del KeyStore.
+     */
     public String asymmetricEncrypt(String certificateKeyStoreAlias, String plainText) {
         return asymmetricEncrypt(
                 certificateKeyStoreAlias,
@@ -116,6 +156,10 @@ public class CryptoUtils {
         );
     }
 
+    /**
+     * Xifra un text pla amb la clau pública obtinguda d'un certificat en un KeyStore.
+     * S'utilitza per a l'intercanvi segur de claus, on només el posseïdor de la clau privada pot desxifrar.
+     */
     public String asymmetricEncrypt(String certificateKeyStoreAlias, String plainText, String keystorePath, String keystorePassword, String keystoreType) {
         try (InputStream fis = CryptoUtils.class.getClassLoader().getResourceAsStream(keystorePath)) {
             if (fis == null) {
@@ -136,6 +180,10 @@ public class CryptoUtils {
         }
     }
 
+    /**
+     * Desxifra un text xifrat utilitzant una clau privada d'un KeyStore.
+     * Mètode de conveniència que utilitza la configuració per defecte del KeyStore.
+     */
     public String asymmetricDecrypt(String privateKeyStoreAlias, String base64CipherText) {
         return asymmetricDecrypt(
                 privateKeyStoreAlias,
@@ -146,6 +194,10 @@ public class CryptoUtils {
         );
     }
 
+    /**
+     * Desxifra un text xifrat amb la clau privada corresponent a un àlies en un KeyStore.
+     * Aquest mètode és crucial per desxifrar la clau de sessió enviada pel servidor.
+     */
     public String asymmetricDecrypt(String privateKeyStoreAlias, String base64CipherText, String keystorePath, String keystorePassword, String keystoreType) {
         try (InputStream fis = CryptoUtils.class.getClassLoader().getResourceAsStream(keystorePath)) {
             if (fis == null) {

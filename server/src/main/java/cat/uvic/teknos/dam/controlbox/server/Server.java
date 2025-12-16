@@ -16,15 +16,26 @@ import java.util.concurrent.Executors;
 
 public class Server {
 
+    /**
+     * Gestiona un pool de fils per atendre múltiples clients de forma concurrent.
+     * S'utilitza un CachedThreadPool perquè crea fils segons la demanda i els reutilitza.
+     */
     private static final ExecutorService executorService = Executors.newCachedThreadPool();
+
+    /**
+     * Llista concurrent per emmagatzemar els gestors de clients connectats.
+     * CopyOnWriteArrayList és segura per a lectures i escriptures concurrents sense bloquejos explícits.
+     */
     private static final List<ClientHandler> connectedClients = new CopyOnWriteArrayList<>();
 
     public static void main(String[] args) throws IOException {
+        // Inicialització de la capa de dades i controladors per gestionar les peticions.
         JdbcProductRepository productRepository = new JdbcProductRepository(new SingleConnectionDataSource());
         ObjectMapper mapper = new ObjectMapper();
         ProductController productController = new ProductController(productRepository, mapper);
         KeyController keyController = new KeyController();
 
+        // Mapa de controladors per dirigir les peticions a la lògica corresponent segons la ruta.
         Map<String, Object> controllers = new HashMap<>();
         controllers.put("/products", productController);
         controllers.put("/keys", keyController);
@@ -32,6 +43,10 @@ public class Server {
 
         startClientCountReporter();
 
+        /**
+         * Obre un ServerSocket al port 5000 i espera connexions de clients en un bucle infinit.
+         * Per cada connexió, crea un ClientHandler i el submou a l'ExecutorService.
+         */
         try (ServerSocket serverSocket = new ServerSocket(5000)) {
             System.out.println("Server started on port 5000");
 
@@ -40,6 +55,7 @@ public class Server {
                     Socket clientSocket = serverSocket.accept();
                     System.out.println("Server: Client connected from " + clientSocket.getInetAddress());
 
+                    // Cada client és gestionat per un ClientHandler en un fil separat.
                     ClientHandler clientHandler = new ClientHandler(clientSocket, controllers, connectedClients);
                     connectedClients.add(clientHandler);
 
@@ -51,6 +67,10 @@ public class Server {
         }
     }
 
+    /**
+     * Inicia un fil en segon pla que informa periòdicament del nombre de clients connectats.
+     * És útil per monitorar l'estat del servidor sense interrompre la seva funció principal.
+     */
     private static void startClientCountReporter() {
         Thread reporterThread = new Thread(() -> {
             while (true) {

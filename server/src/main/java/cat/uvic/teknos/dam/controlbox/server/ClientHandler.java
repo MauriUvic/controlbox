@@ -107,51 +107,51 @@ public class ClientHandler implements Runnable {
                         response = "HTTP/1.1 404 Not Found\r\n\r\n";
                     }
 
+
                     String responseBody = "";
                     int bodyIndex = response.indexOf("\r\n\r\n");
-                    if (bodyIndex != -1 && bodyIndex + 4 <= response.length()) {
-                        responseBody = response.substring(bodyIndex + 4);
-                    }
-
-                    String statusLine = response.substring(0, response.indexOf("\r\n"));
-
-                    // Extract original headers, but filter out Content-Length
-                    String originalHeadersString = "";
-                    if (response.indexOf("\r\n") + 2 < bodyIndex) {
-                        originalHeadersString = response.substring(response.indexOf("\r\n") + 2, bodyIndex);
-                    }
+                    String responseHeaders = "";
                     
-                    String[] headersArray = originalHeadersString.split("\r\n");
-                    StringBuilder headersToKeep = new StringBuilder();
-                    for (String header : headersArray) {
-                        if (!header.trim().toLowerCase().startsWith("content-length:")) {
-                            headersToKeep.append(header).append("\r\n");
+                    if (bodyIndex != -1) {
+                        responseHeaders = response.substring(0, bodyIndex);
+                        if (bodyIndex + 4 < response.length()) {
+                            responseBody = response.substring(bodyIndex + 4);
                         }
+                    } else {
+                        responseHeaders = response;
                     }
 
-                    String finalResponse;
-                    if (sessionKey != null && !path.startsWith("/keys") && !responseBody.isEmpty()) {
-                        // Encrypt the body for relevant responses
+                    String headersAndBody;
+
+                    if (sessionKey != null && !path.startsWith("/keys")) {
                         String encryptedBody = cryptoUtils.crypt(responseBody, sessionKey);
                         String responseHash = cryptoUtils.hash(encryptedBody);
-
-                        finalResponse = statusLine + "\r\n" +
-                                headersToKeep.toString() +
-                                "X-Hash: " + responseHash + "\r\n" +
+                        
+                        // Remove original Content-Length from headers to avoid duplicates/mismatches
+                        responseHeaders = removeHeader(responseHeaders, "Content-Length");
+                        
+                        headersAndBody = "X-Hash: " + responseHash + "\r\n" +
                                 "X-Encrypted: true\r\n" +
                                 "Content-Length: " + encryptedBody.length() + "\r\n\r\n" +
                                 encryptedBody;
                     } else {
-                        // For /keys or unencrypted responses, just add hash and correct content length
                         String responseHash = cryptoUtils.hash(responseBody);
-                        finalResponse = statusLine + "\r\n" +
-                                headersToKeep.toString() +
-                                "X-Hash: " + responseHash + "\r\n" +
+                        
+                        // If we are modifying the body (even just hashing), we should ensure Content-Length is correct or let it be if it matches
+                        // But here we just append headers. If responseBody is same, Content-Length is same.
+                        // However, to be safe and consistent, we rely on the controller's Content-Length unless we encrypt.
+                        
+                        headersAndBody = "X-Hash: " + responseHash + "\r\n" +
                                 "Content-Length: " + responseBody.length() + "\r\n\r\n" +
                                 responseBody;
+                                
+                        // Note: If the controller already added Content-Length, we will have two.
+                        // Ideally we should remove the old one here too if we are adding a new one.
+                        responseHeaders = removeHeader(responseHeaders, "Content-Length");
                     }
 
-                    out.print(finalResponse);
+
+                    out.print(responseHeaders + "\r\n" + headersAndBody);
                     out.flush();
                     System.out.println("Server: Response sent.");
 
@@ -182,5 +182,29 @@ public class ClientHandler implements Runnable {
                 System.err.println("Server: Error closing client socket: " + e.getMessage());
             }
         }
+    }
+
+    private String removeHeader(String headers, String headerName) {
+        StringBuilder sb = new StringBuilder();
+        String[] lines = headers.split("\r\n");
+        for (String line : lines) {
+            if (!line.toLowerCase().startsWith(headerName.toLowerCase() + ":")) {
+                sb.append(line).append("\r\n");
+            }
+        }
+        // Remove the last \r\n to avoid double spacing when appending later, 
+        // but wait, the logic below does out.print(responseHeaders + "\r\n" + headersAndBody);
+        // The split consumes \r\n. The loop appends \r\n.
+        // So the result ends with \r\n.
+        // If original was "HTTP... \r\nHeader...", result is "HTTP...\r\nHeader...\r\n"
+        // Then we add "\r\n" -> double newline -> end of headers.
+        // But headersAndBody starts with headers.
+        // So we want "HTTP...\r\nHeader...\r\n" + "NewHeader...\r\n\r\nBody"
+        // This looks correct.
+        
+        if (sb.length() > 2) {
+            sb.setLength(sb.length() - 2); // Remove last \r\n
+        }
+        return sb.toString();
     }
 }

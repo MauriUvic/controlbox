@@ -5,19 +5,29 @@ import java.util.HashSet;
 import java.util.Set;
 
 import cat.uvic.teknos.dam.controlbox.jdbc.datasources.DataSource;
-import cat.uvic.teknos.dam.controlbox.jdbc.model.JdbcMovement;
 import cat.uvic.teknos.dam.controlbox.jdbc.model.JdbcProduct;
-import cat.uvic.teknos.dam.controlbox.model.Movement;
 import cat.uvic.teknos.dam.controlbox.model.Product;
 import cat.uvic.teknos.dam.controlbox.repositories.ProductRepository;
 
+/**
+ * Implementació del repositori de productes utilitzant JDBC.
+ * Gestiona les operacions CRUD (Crear, Llegir, Actualitzar, Esborrar) per a l'entitat Product a la base de dades.
+ */
 public class JdbcProductRepository implements ProductRepository {
     private final DataSource dataSource;
 
+    /**
+     * Constructor que injecta una font de dades (DataSource).
+     * El DataSource proporciona les connexions a la base de dades.
+     */
     public JdbcProductRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+    /**
+     * Obté un producte de la base de dades a partir del seu nom.
+     * Retorna el producte si el troba, o null si no existeix.
+     */
     @Override
     public Product getProductByName(String name) {
         try (var connection = dataSource.getConnection();
@@ -40,10 +50,15 @@ public class JdbcProductRepository implements ProductRepository {
         }
     }
 
+    /**
+     * Desa un producte a la base de dades.
+     * Si el producte no té ID, realitza una inserció (INSERT). Si té ID, realitza una actualització (UPDATE).
+     */
     @Override
     public void save(Product product) {
         try (var connection = dataSource.getConnection()) {
             if(product.getId() == null) {
+                // Inserció d'un nou producte i obtenció de l'ID generat.
                 try (var preparedStatement = connection.prepareStatement(
                         "INSERT INTO PRODUCT (NAME, DESCRIPTION, PRICE, STOCK) VALUES (?, ?, ?, ?)",
                         java.sql.Statement.RETURN_GENERATED_KEYS)) {
@@ -61,6 +76,7 @@ public class JdbcProductRepository implements ProductRepository {
                     }
                 }
             } else {
+                // Actualització d'un producte existent.
                 try (var preparedStatement = connection.prepareStatement(
                         "UPDATE PRODUCT SET NAME = ?, DESCRIPTION = ?, PRICE = ?, STOCK = ? WHERE ID = ?")) {
                     preparedStatement.setString(1, product.getName());
@@ -77,6 +93,10 @@ public class JdbcProductRepository implements ProductRepository {
         }
     }
 
+    /**
+     * Obté un producte de la base de dades a partir del seu ID.
+     * Retorna el producte si el troba, o null si no existeix.
+     */
     @Override
     public Product get(Integer id) {
         try (var connection = dataSource.getConnection();
@@ -98,6 +118,9 @@ public class JdbcProductRepository implements ProductRepository {
         }
     }
 
+    /**
+     * Elimina un producte de la base de dades a partir del seu ID.
+     */
     @Override
     public void delete(Integer value) {
         try (var connection = dataSource.getConnection();
@@ -110,6 +133,10 @@ public class JdbcProductRepository implements ProductRepository {
         }
     }
 
+    /**
+     * Obté tots els productes de la base de dades.
+     * Retorna un conjunt (Set) de tots els productes trobats.
+     */
     @Override
     public Set<Product> getAll() {
         Set<Product> products = new HashSet<>();
@@ -131,4 +158,3 @@ public class JdbcProductRepository implements ProductRepository {
         }
     }
 }
-
