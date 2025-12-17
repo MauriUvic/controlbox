@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# --- Security Best Practices Keystore Generation Script ---
-
-# This script now accepts a list of client aliases as arguments.
-# Example usage: ./generate_keystores.sh client1 client2 client3
 
 # Variables
 SERVER_KEYSTORE="server.p12"

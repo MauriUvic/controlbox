@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="Backoffice version 4">
-      <change afterPath="$PROJECT_DIR$/clients/console/src/main/java/cat/uvic/teknos/dam/controlbox/clients/Client1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clients/console/src/main/java/cat/uvic/teknos/dam/controlbox/clients/Client2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_clients.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="be518c25-1531-4182-96d9-811dc90cf916" name="Changes" comment="Database change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clients/console/src/main/java/cat/uvic/teknos/dam/controlbox/clients/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/clients/console/src/main/java/cat/uvic/teknos/dam/controlbox/clients/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/kotlin/buildlogic/java-common-conventions.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/buildlogic/java-common-conventions.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generate_keystores.sh" beforeDir="false" afterPath="$PROJECT_DIR$/generate_keystores.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/cat/uvic/teknos/dam/controlbox/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/cat/uvic/teknos/dam/controlbox/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/cat/uvic/teknos/dam/controlbox/server/KeyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/cat/uvic/teknos/dam/controlbox/server/KeyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilities/src/main/java/cat/uvic/teknos/dam/controlbox/security/CryptoUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/src/main/java/cat/uvic/teknos/dam/controlbox/security/CryptoUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +53,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="bfe6eea6cc493a693c25995325dcbce8fcaa3fb8" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -93,68 +91,59 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Client.executor&quot;: &quot;Profiler#3&quot;,
-    &quot;Gradle.Build controlbox.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JdbcMovementRepositoryTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcMovementRepositoryTest.getAll.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcMovementRepositoryTest.testDeleteMovement.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JdbcMovementRepositoryTest.testGetAll.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcMovementRepositoryTest.testSaveAndGetMovement (1).executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcMovementRepositoryTest.testSaveAndGetMovement.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JdbcOrderRepositoryTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcOrderRepositoryTest.testSaveAndGetOrder.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcProductRepositoryTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcProductRepositoryTest.testDeleteProduct.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcProductRepositoryTest.testSaveAndGetProduct.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcRequestRepositoryTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JdbcRequestRepositoryTest.testSaveAndGetRequest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JdbcSupplierRepositoryTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.JpaRequestTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SingleConnectionDataSourceTest.getConnection.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SingleConnectionDataSourceTest.getDriver.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SingleConnectionDataSourceTest.getServer.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox [:clients:console:cat.uvic.teknos.dam.controlbox.clients.Client.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox [:clients:console:cat.uvic.teknos.dam.controlbox.clients.Client1.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox [:clients:console:cat.uvic.teknos.dam.controlbox.clients.Client2.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox [:server:cat.uvic.teknos.dam.controlbox.server.Server.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox:app [:app:cat.uvic.teknos.dam.controlbox.main.App.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox:app [:app:org.example.app.JdbcApp.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox:clients:console [:clients:console:cat.uvic.teknos.dam.controlbox.clients.Client.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox:jdbc [:jdbc:cat.uvic.teknos.dam.controlbox.App.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.controlbox:server [:server:cat.uvic.teknos.dam.controlbox.server.Server.main()].executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JdbcMovementRepositoryTest.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\10059541\\AppData\\Roaming\\JetBrains\\IntelliJIdea2025.2\\plugins\\Shell Script\\shellcheck.exe&quot;,
-    &quot;Shell Script.generate_keystores.sh.executor&quot;: &quot;Run&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/10059541/source/repos/controlbox/jpa/src/main/java&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mauri/Escritorio/UVIC/backend/controlbox&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build controlbox.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.JdbcMovementRepositoryTest.executor": "Debug",
+    "Gradle.JdbcMovementRepositoryTest.getAll.executor": "Debug",
+    "Gradle.JdbcMovementRepositoryTest.testDeleteMovement.executor": "Run",
+    "Gradle.JdbcMovementRepositoryTest.testGetAll.executor": "Debug",
+    "Gradle.JdbcMovementRepositoryTest.testSaveAndGetMovement (1).executor": "Debug",
+    "Gradle.JdbcMovementRepositoryTest.testSaveAndGetMovement.executor": "Run",
+    "Gradle.JdbcOrderRepositoryTest.executor": "Debug",
+    "Gradle.JdbcOrderRepositoryTest.testSaveAndGetOrder.executor": "Debug",
+    "Gradle.JdbcProductRepositoryTest.executor": "Debug",
+    "Gradle.JdbcProductRepositoryTest.testDeleteProduct.executor": "Debug",
+    "Gradle.JdbcProductRepositoryTest.testSaveAndGetProduct.executor": "Debug",
+    "Gradle.JdbcRequestRepositoryTest.executor": "Debug",
+    "Gradle.JdbcRequestRepositoryTest.testSaveAndGetRequest.executor": "Run",
+    "Gradle.JdbcSupplierRepositoryTest.executor": "Debug",
+    "Gradle.JpaRequestTest.executor": "Run",
+    "Gradle.SingleConnectionDataSourceTest.getConnection.executor": "Run",
+    "Gradle.SingleConnectionDataSourceTest.getDriver.executor": "Run",
+    "Gradle.SingleConnectionDataSourceTest.getServer.executor": "Run",
+    "Gradle.controlbox [:clients:console:cat.uvic.teknos.dam.controlbox.clients.Client1.main()].executor": "Run",
+    "Gradle.controlbox [:server:cat.uvic.teknos.dam.controlbox.server.Server.main()].executor": "Run",
+    "Gradle.controlbox:app [:app:cat.uvic.teknos.dam.controlbox.main.App.main()].executor": "Run",
+    "Gradle.controlbox:app [:app:org.example.app.JdbcApp.main()].executor": "Run",
+    "Gradle.controlbox:clients:console [:clients:console:cat.uvic.teknos.dam.controlbox.clients.Client.main()].executor": "Run",
+    "Gradle.controlbox:jdbc [:jdbc:cat.uvic.teknos.dam.controlbox.App.main()].executor": "Run",
+    "Gradle.controlbox:server [:server:cat.uvic.teknos.dam.controlbox.server.Server.main()].executor": "Run",
+    "JUnit.JdbcMovementRepositoryTest.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "3.1",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/10059541/source/repos/controlbox/jpa/src/main/java",
+    "last_opened_file_path": "C:/Users/10059541/IdeaProjects/controlbox",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "com.android.studio.ml.bot.mainConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\10059541\IdeaProjects\controlbox" />
@@ -173,14 +162,14 @@
       <recent name="cat.uvic.teknos.dam.controlbox.jdbc.datasources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cat.uvic.teknos.dam.controlbox.clients" />
       <recent name="cat.uvic.teknos.dam.controlbox.jdbc.model" />
       <recent name="cat.uvic.teknos.dam.controlbox.modal.jpa" />
       <recent name="cat.uvic.teknos.dam.controlbox.jdbc" />
       <recent name="cat.uvic.teknos.dam.controlbox.jdbc.modal" />
-      <recent name="cat.uvic.teknos.dam.controlbox.repositories" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client2">
+  <component name="RunManager" selected="Application.Client1">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cat.uvic.teknos.dam.controlbox.clients.Client" />
       <module name="controlbox.clients.console.main" />
@@ -207,19 +196,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Client2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cat.uvic.teknos.dam.controlbox.clients.Client2" />
-      <module name="controlbox.clients.console.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cat.uvic.teknos.dam.controlbox.clients.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cat.uvic.teknos.dam.controlbox.server.Server" />
       <module name="controlbox.server.main" />
@@ -233,6 +209,60 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="JdbcOrderRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":jdbc:test" />
+            <option value="--tests" />
+            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcOrderRepositoryTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="JdbcOrderRepositoryTest.testSaveAndGetOrder" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":jdbc:test" />
+            <option value="--tests" />
+            <option value="&quot;cat.uvic.teknos.dam.controlbox.jdbc.repositories.JdbcOrderRepositoryTest.testSaveAndGetOrder&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="controlbox.model" />
       <method v="2">
@@ -244,36 +274,21 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
-    <configuration name="generate_keystores.sh" type="ShConfigurationType" temporary="true">
-      <option name="SCRIPT_TEXT" value="" />
-      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/generate_keystores.sh" />
-      <option name="SCRIPT_OPTIONS" value="" />
-      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
-      <option name="INTERPRETER_PATH" value="/bin/bash" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="EXECUTE_IN_TERMINAL" value="true" />
-      <option name="EXECUTE_SCRIPT_FILE" value="true" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Client2" />
         <item itemvalue="Application.Client1" />
-        <item itemvalue="Shell Script.generate_keystores.sh" />
-        <item itemvalue="Application.Client" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Gradle.JdbcOrderRepositoryTest" />
+        <item itemvalue="Gradle.JdbcOrderRepositoryTest.testSaveAndGetOrder" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
-        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
       </set>
     </attachedChunks>
   </component>
@@ -333,17 +348,7 @@
       <workItem from="1761138891376" duration="596000" />
       <workItem from="1761139504627" duration="3763000" />
       <workItem from="1761143315956" duration="40000" />
-      <workItem from="1761143379394" duration="10998000" />
-      <workItem from="1761747773963" duration="924000" />
-      <workItem from="1762782188863" duration="480000" />
-      <workItem from="1762782693816" duration="95000" />
-      <workItem from="1762782804257" duration="668000" />
-      <workItem from="1762783486843" duration="1440000" />
-      <workItem from="1765298886903" duration="582000" />
-      <workItem from="1765300727616" duration="101000" />
-      <workItem from="1765300843520" duration="6096000" />
-      <workItem from="1765315331705" duration="456000" />
-      <workItem from="1765315800097" duration="4260000" />
+      <workItem from="1761143379394" duration="9340000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial implementation of model classes and Gradle configuration">
       <option name="closed" value="true" />
@@ -441,31 +446,7 @@
       <option name="project" value="LOCAL" />
       <updated>1760544804588</updated>
     </task>
-    <task id="LOCAL-00013" summary="Backoffice version 2">
-      <option name="closed" value="true" />
-      <created>1761156147411</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1761156147411</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Backoffice version 3">
-      <option name="closed" value="true" />
-      <created>1762784155036</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1762784155036</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Backoffice version 4">
-      <option name="closed" value="true" />
-      <created>1765302904500</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1765302904500</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,10 +460,7 @@
     <MESSAGE value="tEST MOV RUN" />
     <MESSAGE value="test2323" />
     <MESSAGE value="Database change" />
-    <MESSAGE value="Backoffice version 2" />
-    <MESSAGE value="Backoffice version 3" />
-    <MESSAGE value="Backoffice version 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Backoffice version 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Database change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

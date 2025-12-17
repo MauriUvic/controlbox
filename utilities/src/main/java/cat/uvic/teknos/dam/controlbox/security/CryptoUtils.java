@@ -60,9 +60,7 @@ public class CryptoUtils {
         return hexString.toString();
     }
 
-    public String crypt(String plainText) {
-        return crypt(plainText, properties.getProperty("symmetric.key"));
-    }
+
 
     public String crypt(String plainText, String base64SessionKey) {
         try {
@@ -83,9 +81,6 @@ public class CryptoUtils {
         }
     }
 
-    public String decrypt(String base64CipherText) {
-        return decrypt(base64CipherText, properties.getProperty("symmetric.key"));
-    }
 
     public String decrypt(String base64CipherText, String base64SessionKey) {
         try {
@@ -136,15 +131,7 @@ public class CryptoUtils {
         }
     }
 
-    public String asymmetricDecrypt(String privateKeyStoreAlias, String base64CipherText) {
-        return asymmetricDecrypt(
-                privateKeyStoreAlias,
-                base64CipherText,
-                properties.getProperty("keystore.path"),
-                properties.getProperty("keystore.password"),
-                properties.getProperty("keystore.type")
-        );
-    }
+
 
     public String asymmetricDecrypt(String privateKeyStoreAlias, String base64CipherText, String keystorePath, String keystorePassword, String keystoreType) {
         try (InputStream fis = CryptoUtils.class.getClassLoader().getResourceAsStream(keystorePath)) {
